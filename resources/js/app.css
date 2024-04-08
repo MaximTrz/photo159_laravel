@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px;
+    min-height: 100vh;
+}
