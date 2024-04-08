@@ -20,8 +20,7 @@ root.render(
                 <Header />
             </header>
             <main className="layout__main">main</main>
-            <aside className="layout__aside">aside</aside>
-            <footer className="layout__footer">footer</footer>
+            <footer className="layout__footer">&#9400; 2024</footer>
         </div>
     </React.StrictMode>,
 );
