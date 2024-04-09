@@ -1,5 +1,15 @@
+@import "constants";
+@import "mixins";
+@import "fonts";
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
+    font-size: $base-font-family;
+    font-family: $base-font-family;
 }
 
 img {

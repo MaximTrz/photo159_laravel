@@ -1,3 +1,5 @@
+@import "../../style/_constants.scss";
+
 .tabs-list {
     list-style: none;
     display: flex;
@@ -5,5 +7,51 @@
     justify-content: space-between;
     &__item {
         flex-grow: 1;
+        font-family: $second-font-family;
+        text-align: center;
+        font-size: 33px;
+        flex-basis: 25%;
+        overflow: hidden;
+        &.--last {
+            border-radius: 0 15px 0 0;
+        }
+        &.--first {
+            border-radius: 15px 0 0 0;
+        }
+    }
+    &__link {
+        color: #fff;
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 1.2;
+        text-decoration: none;
+        &.--main {
+            background-color: $base-blue;
+            &:hover {
+                background-color: darken($base-blue, 30%);
+            }
+        }
+        &.--services {
+            background-color: $base-green;
+            &:hover {
+                background-color: darken($base-green, 30%);
+            }
+        }
+        &.--faq {
+            background-color: $base-orange;
+            &:hover {
+                background-color: darken($base-orange, 30%);
+            }
+        }
+        &.--contacts {
+            background-color: $base-violet;
+            &:hover {
+                background-color: darken($base-violet, 30%);
+            }
+        }
+        &.--active {
+            border: 1px solid red;
+        }
     }
 }

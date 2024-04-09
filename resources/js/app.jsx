@@ -1,26 +1,16 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
 
-import TabsList from "./components/tabs-list";
-import Header from "./components/header";
+import Router from "./router";
 
 import "./bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./app.css";
+import "./style/app.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <React.StrictMode>
-        <div className="layout">
-            <nav className="header__nav">
-                <TabsList />
-            </nav>
-            <header className="layout__header">
-                <Header />
-            </header>
-            <main className="layout__main">main</main>
-            <footer className="layout__footer">&#9400; 2024</footer>
-        </div>
+        <Router />
     </React.StrictMode>,
 );

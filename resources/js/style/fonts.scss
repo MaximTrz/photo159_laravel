@@ -1,0 +1,105 @@
+@font-face {
+    font-family: "Rain Tungsten";
+    src: local("Rain Tungsten"), local("../fonts/RainTungstenMedium"),
+        url("../fonts/RainTungstenMedium.ttf");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Thin"),
+        local("../fonts/BebasNeue-Thin"),
+        url("../fonts/bebasneuethin.woff2") format("woff2"),
+        url("../fonts/bebasneuethin.woff") format("woff"),
+        url("../fonts/bebasneuethin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Light"),
+        local("../fonts/BebasNeue-Light"),
+        url("../fonts/bebasneuelight.woff2") format("woff2"),
+        url("../fonts/bebasneuelight.woff") format("woff"),
+        url("../fonts/bebasneuelight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Book"),
+        local("../fonts/BebasNeueBook"),
+        url("../fonts/bebasneuebook.woff2") format("woff2"),
+        url("../fonts/bebasneuebook.woff") format("woff"),
+        url("../fonts/bebasneuebook.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Regular"),
+        local("../fonts/BebasNeueRegular"),
+        url("../fonts/bebasneueregular.woff2") format("woff2"),
+        url("../fonts/bebasneueregular.woff") format("woff"),
+        url("../fonts/bebasneueregular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Bebas Neue";
+    src:
+        local("Bebas Neue Bold"),
+        local("../fonts/BebasNeueBold"),
+        url("../fonts/bebasneuebold.woff2") format("woff2"),
+        url("../fonts/bebasneuebold.woff") format("woff"),
+        url("../fonts/bebasneuebold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Myriad Pro";
+    src: url("MyriadPro-Bold.eot");
+    src:
+        local("Myriad Pro Bold"),
+        local("MyriadPro-Bold"),
+        url("../fonts/myriad/MyriadPro-Bold.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/myriad/MyriadPro-Bold.woff") format("woff"),
+        url("../fonts/myriad/MyriadPro-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Myriad Pro";
+    src: url("MyriadPro-Light.eot");
+    src:
+        local("Myriad Pro Light"),
+        local("MyriadPro-Light"),
+        url("../fonts/myriad/MyriadPro-Light.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/myriad/MyriadPro-Light.woff") format("woff"),
+        url("../fonts/myriad/MyriadPro-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Myriad Pro";
+    src: url("MyriadPro-Regular.eot");
+    src:
+        local("Myriad Pro Regular"),
+        local("MyriadPro-Regular"),
+        url("../fonts/myriad/MyriadPro-Regular.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/myriad/MyriadPro-Regular.woff") format("woff"),
+        url("../fonts/myriad/MyriadPro-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
