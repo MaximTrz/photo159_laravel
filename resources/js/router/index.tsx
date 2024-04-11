@@ -8,10 +8,10 @@ function Router() {
     return (
         <BrowserRouter>
             <div className="layout">
-                <nav className="header__nav">
-                    <TabsList />
-                </nav>
                 <header className="layout__header">
+                    <nav className="header__nav">
+                        <TabsList />
+                    </nav>
                     <Header />
                 </header>
                 <main className="layout__main">

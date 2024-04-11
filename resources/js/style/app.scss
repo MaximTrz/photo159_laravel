@@ -22,4 +22,5 @@ img {
     margin: 0 auto;
     padding: 0 30px;
     min-height: 100vh;
+    grid-template-rows: 150px 1fr 50px;
 }
