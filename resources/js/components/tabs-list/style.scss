@@ -26,6 +26,7 @@
         padding-bottom: 10px;
         line-height: 1.2;
         text-decoration: none;
+        text-transform: uppercase;
         &.--main {
             background-color: $base-blue;
             &:hover {
@@ -51,7 +52,7 @@
             }
         }
         &.--active {
-            border: 1px solid red;
+            text-decoration: underline;
         }
     }
 }

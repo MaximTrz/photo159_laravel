@@ -2,11 +2,14 @@ import React from "react";
 import classNames from "classnames";
 
 const useTabList = () => {
-    const setActive = React.useCallback((tabName, isActive) => {
-        return classNames("tabs-list__link", `--${tabName}`, {
-            "--active": isActive,
-        });
-    }, []);
+    const setActive = React.useCallback(
+        (tabName: string, isActive: boolean) => {
+            return classNames("tabs-list__link", `--${tabName}`, {
+                "--active": isActive,
+            });
+        },
+        [],
+    );
 
     return { setActive };
 };
