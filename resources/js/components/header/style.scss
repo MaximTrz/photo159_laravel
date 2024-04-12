@@ -1,0 +1,26 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.header {
+    padding: 0 10px 15px 10px;
+    background-color: $base-red;
+    text-align: center;
+    @include tablet {
+        padding: 0 10px 0px 10px;
+    }
+    &__logo {
+        padding-top: 8px;
+        @include tablet {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+    .header__upload {
+        max-width: 250px;
+        margin: 0 auto;
+        @include tablet {
+            display: none;
+            max-width: none;
+        }
+    }
+}

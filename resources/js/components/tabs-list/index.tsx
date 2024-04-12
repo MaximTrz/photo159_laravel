@@ -3,6 +3,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 import useTabList from "./useTabList";
+import UploadButton from "../upload-button";
 
 import "./style.scss";
 
@@ -11,6 +12,9 @@ const TabsList: React.FC = () => {
 
     return (
         <ul className="tabs-list">
+            <li className="tabs-list__item --upload">
+                <UploadButton />
+            </li>
             <li className="tabs-list__item --first">
                 <NavLink
                     to="/"

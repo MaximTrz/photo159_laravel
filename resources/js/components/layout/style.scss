@@ -1,0 +1,35 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.layout {
+    max-width: $wide-desktop-width;
+    margin: 0 auto;
+    padding-top: 35px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header header"
+        "main main main"
+        "footer footer footer";
+    @include tablet {
+        padding: 20px 0px 0 0px;
+    }
+}
+
+.layout__header {
+    grid-area: header;
+    @include tablet {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+.layout__main {
+    grid-area: main;
+    background-color: $bgc;
+}
+
+.layout__footer {
+    grid-area: footer;
+}

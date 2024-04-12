@@ -1,26 +1,5 @@
+@import "normalize.css";
 @import "constants";
+@import "base";
 @import "mixins";
 @import "fonts";
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-size: $base-font-family;
-    font-family: $base-font-family;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.layout {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 30px;
-    min-height: 100vh;
-    grid-template-rows: 150px 1fr 50px;
-}

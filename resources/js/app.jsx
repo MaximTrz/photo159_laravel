@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import Router from "./router";
 
 import "./bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "normalize.css";
 import "./style/app.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

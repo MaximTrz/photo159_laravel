@@ -1,26 +1,11 @@
 import * as React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import TabsList from "../components/tabs-list";
-import Header from "../components/header";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "../components/layout";
 
 function Router() {
     return (
         <BrowserRouter>
-            <div className="layout">
-                <header className="layout__header">
-                    <nav className="header__nav">
-                        <TabsList />
-                    </nav>
-                    <Header />
-                </header>
-                <main className="layout__main">
-                    <Routes>
-                        <Route path="/" element={<div>!!!</div>} />
-                    </Routes>
-                </main>
-                <footer className="layout__footer">&#9400; 2024</footer>
-            </div>
+            <Layout />
         </BrowserRouter>
     );
 }

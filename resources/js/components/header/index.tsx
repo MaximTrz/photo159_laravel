@@ -6,7 +6,13 @@ import "./style.scss";
 const Header: React.FC = () => {
     return (
         <div className="header">
-            <div className="header__logo"></div>
+            <div className="header__logo">
+                <img
+                    className="header__img"
+                    src="images/logo.png"
+                    alt="Печать фото онлайн"
+                />
+            </div>
             <div className="header__upload">
                 <UploadButton />
             </div>
