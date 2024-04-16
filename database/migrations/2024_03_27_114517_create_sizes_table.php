@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->integer('width');
+            $table->integer('height');
+            $table->string("comment")->nullable();
             $table->unsignedBigInteger('size_type_id');
             $table->timestamps();
 
@@ -22,7 +24,6 @@ return new class extends Migration
                 ->on('size_types')
                 ->onDelete('cascade');
         });
-
 
     }
 
