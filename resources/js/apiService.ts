@@ -1,5 +1,13 @@
+import PriceType from "./types/PriceType";
+import SizeType from "./types/SizeType";
+import MaterialType from "./types/MaterialType";
+
 export default class ApiService {
-    getPrices() {
+    getPrices(): {
+        prices: PriceType[];
+        sizes: SizeType[];
+        materials: MaterialType[];
+    } {
         return {
             prices: [
                 {
