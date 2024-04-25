@@ -21,19 +21,21 @@ const Layout: React.FC = () => {
                 <Header />
             </header>
             <main className="layout__main">
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <PriceTable
-                                title="Цены на печать фотографий (руб.)"
-                                sizes={sizes}
-                                materials={materials}
-                                prices={prices}
-                            />
-                        }
-                    />
-                </Routes>
+                <div className="layout__content">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <PriceTable
+                                    title="Цены на печать фотографий (руб.)"
+                                    sizes={sizes}
+                                    materials={materials}
+                                    prices={prices}
+                                />
+                            }
+                        />
+                    </Routes>
+                </div>
             </main>
             <footer className="layout__footer">&#9400; 2024</footer>
         </div>

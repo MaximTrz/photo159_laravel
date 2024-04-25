@@ -28,6 +28,11 @@
 .layout__main {
     grid-area: main;
     background-color: $bgc;
+    padding: 15px;
+}
+
+.layout__content {
+    background-color: #fff;
 }
 
 .layout__footer {

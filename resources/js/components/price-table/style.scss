@@ -1,0 +1,17 @@
+.price-table {
+    display: block;
+    padding: 15px;
+    &__title {
+        color: red;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 0;
+        font-weight: 800;
+        padding: 15px 0 25px 0;
+    }
+    &__size {
+        padding: 1px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}

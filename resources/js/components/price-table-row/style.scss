@@ -1,0 +1,15 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+.price-table-row {
+    &__head {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    &__price {
+        background-color: $bgc;
+        padding: 15px 0;
+        text-align: center;
+        border: 2px solid #fff;
+    }
+}
