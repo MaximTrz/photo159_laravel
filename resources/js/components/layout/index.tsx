@@ -3,9 +3,15 @@ import TabsList from "../tabs-list";
 import Header from "../header";
 import { Routes, Route } from "react-router-dom";
 
+import Context from "../../context";
+
+import PriceTable from "../price-table";
 import "./style.scss";
 
 const Layout: React.FC = () => {
+    const { apiService } = React.useContext(Context);
+    const { sizes, materials, prices } = apiService.getPrices();
+
     return (
         <div className="layout">
             <header className="layout__header">
@@ -16,7 +22,17 @@ const Layout: React.FC = () => {
             </header>
             <main className="layout__main">
                 <Routes>
-                    <Route path="/" element={<div>!!!</div>} />
+                    <Route
+                        path="/"
+                        element={
+                            <PriceTable
+                                title="Цены на печать фотографий (руб.)"
+                                sizes={sizes}
+                                materials={materials}
+                                prices={prices}
+                            />
+                        }
+                    />
                 </Routes>
             </main>
             <footer className="layout__footer">&#9400; 2024</footer>

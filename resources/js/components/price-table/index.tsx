@@ -9,7 +9,7 @@ const PriceTable: React.FC<TablePricePropsType> = ({
     materials,
     prices,
 }) => {
-    console.log(sizes, materials, prices, title);
+    console.log(title);
     return (
         <table>
             <PriceTableHeart sizes={sizes} />
