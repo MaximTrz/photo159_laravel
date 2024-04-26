@@ -3,15 +3,11 @@ import TabsList from "../tabs-list";
 import Header from "../header";
 import { Routes, Route } from "react-router-dom";
 
-import Context from "../../context";
+import Prices from "../../pages/prices";
 
-import PriceTable from "../price-table";
 import "./style.scss";
 
 const Layout: React.FC = () => {
-    const { apiService } = React.useContext(Context);
-    const { sizes, materials, prices } = apiService.getPrices();
-
     return (
         <div className="layout">
             <header className="layout__header">
@@ -23,17 +19,7 @@ const Layout: React.FC = () => {
             <main className="layout__main">
                 <div className="layout__content">
                     <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <PriceTable
-                                    title="Цены на печать фотографий (руб.)"
-                                    sizes={sizes}
-                                    materials={materials}
-                                    prices={prices}
-                                />
-                            }
-                        />
+                        <Route path="/" element={<Prices />} />
                     </Routes>
                 </div>
             </main>
