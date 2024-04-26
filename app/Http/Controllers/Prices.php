@@ -7,6 +7,12 @@ use App\Models\Price;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
+const MAIN_MATERIAL_ID = 1;
+const SOUVENIR_MATERIAL_ID = 2;
+
+const MAIN_SIZE_ID = 1;
+const SOUVENIR_SIZE_ID = 2;
+
 class Prices extends Controller
 {
     /**
@@ -16,12 +22,18 @@ class Prices extends Controller
     {
         $prices = Price::with('size', 'material')->get();
 
-        $sizes = Size::orderBy('sort_order')->get();
-        $materials = Material::orderBy('sort_order')->get();
+        $baseSizes = Size::where('size_type_id', MAIN_SIZE_ID)->orderBy('sort_order')->get();
+
+        $baseMaterials = Material::where('material_type_id', MAIN_MATERIAL_ID)->orderBy('sort_order')->get();
+
+        $souvenirSizes = Size::where('size_type_id', SOUVENIR_SIZE_ID)->orderBy('sort_order')->get();
+        $souvenirMaterials = Material::where('material_type_id', SOUVENIR_SIZE_ID)->orderBy('sort_order')->get();
 
         $res = ["prices"=>$prices,
-                "sizes"=>$sizes,
-                "materials" => $materials];
+                "baseSizes"=>$baseSizes,
+                "baseMaterials" => $baseMaterials,
+                "souvenirSizes" => $souvenirSizes,
+                "souvenirMaterials" => $souvenirMaterials];
 
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
