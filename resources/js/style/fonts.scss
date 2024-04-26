@@ -63,43 +63,91 @@
 }
 
 @font-face {
-    font-family: "Myriad Pro";
-    src: url("MyriadPro-Bold.eot");
-    src:
-        local("Myriad Pro Bold"),
-        local("MyriadPro-Bold"),
-        url("../fonts/myriad/MyriadPro-Bold.eot?#iefix")
-            format("embedded-opentype"),
-        url("../fonts/myriad/MyriadPro-Bold.woff") format("woff"),
-        url("../fonts/myriad/MyriadPro-Bold.ttf") format("truetype");
-    font-weight: bold;
+    font-family: "Myriad Pro Regular";
     font-style: normal;
-}
-
-@font-face {
-    font-family: "Myriad Pro";
-    src: url("MyriadPro-Light.eot");
-    src:
-        local("Myriad Pro Light"),
-        local("MyriadPro-Light"),
-        url("../fonts/myriad/MyriadPro-Light.eot?#iefix")
-            format("embedded-opentype"),
-        url("../fonts/myriad/MyriadPro-Light.woff") format("woff"),
-        url("../fonts/myriad/MyriadPro-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Myriad Pro";
-    src: url("MyriadPro-Regular.eot");
+    font-weight: normal;
     src:
         local("Myriad Pro Regular"),
-        local("MyriadPro-Regular"),
-        url("../fonts/myriad/MyriadPro-Regular.eot?#iefix")
-            format("embedded-opentype"),
-        url("../fonts/myriad/MyriadPro-Regular.woff") format("woff"),
-        url("../fonts/myriad/MyriadPro-Regular.ttf") format("truetype");
-    font-weight: normal;
+        url("../fonts/myriad/MYRIADPRO-REGULAR.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Condensed";
     font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Condensed"),
+        url("../fonts/myriad/MYRIADPRO-COND.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Condensed Italic";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Condensed Italic"),
+        url("../fonts/myriad/MYRIADPRO-CONDIT.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Light";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Light"),
+        url("../fonts/myriad/MyriadPro-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Semibold";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Semibold"),
+        url("../fonts/myriad/MYRIADPRO-SEMIBOLD.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Semibold Italic";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Semibold Italic"),
+        url("../fonts/myriad/MYRIADPRO-SEMIBOLDIT.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Bold Condensed";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Bold Condensed"),
+        url("../fonts/myriad/MYRIADPRO-BOLDCOND.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Bold";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Bold"),
+        url("../fonts/myriad/MYRIADPRO-BOLD.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Bold Italic";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Bold Italic"),
+        url("../fonts/myriad/MYRIADPRO-BOLDIT.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Myriad Pro Bold Condensed Italic";
+    font-style: normal;
+    font-weight: normal;
+    src:
+        local("Myriad Pro Bold Condensed Italic"),
+        url("../fonts/myriad/MYRIADPRO-BOLDCONDIT.woff") format("woff");
 }
