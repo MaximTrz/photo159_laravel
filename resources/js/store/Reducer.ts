@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import StateType from "../types/StateType";
 import PriceType from "../types/PriceType";
 import MaterialType from "../types/MaterialType";
 import SizeType from "../types/SizeType";
+import PhotoType from "../types/PhotoType";
 
-const initialState = {
-    prices: {},
-    materials: {},
-    sizes: {},
+const initialState: StateType = {
+    prices: [],
+    materials: [],
+    sizes: [],
+    photos: [],
 };
 
 const toolkitSliceReduser = createSlice({
@@ -22,6 +25,9 @@ const toolkitSliceReduser = createSlice({
         },
         setSizes: (state, { payload }: { payload: SizeType[] }) => {
             state.sizes = payload;
+        },
+        addPhoto: (state, { payload }: { payload: PhotoType }) => {
+            state.photos.push(payload);
         },
     },
 });
