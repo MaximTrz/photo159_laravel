@@ -6,7 +6,7 @@ import "./style.scss";
 const Select: React.FC<SelectPropsType> = ({ title, options }) => {
     return (
         <div className="select-item">
-            <label className="select__item__label">{title}</label>
+            <label className="select-item__label">{title}</label>
             <select className="select-item__select">
                 {options.map((item) => {
                     return (
