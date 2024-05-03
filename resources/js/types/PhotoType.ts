@@ -3,6 +3,6 @@ export default interface PhotoType {
     size: number;
     material: number;
     amount: number;
-    sum: number;
+    price: number;
     image: string;
 }

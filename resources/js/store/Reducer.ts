@@ -10,7 +10,48 @@ const initialState: StateType = {
     prices: [],
     materials: [],
     sizes: [],
-    photos: [],
+    photos: [
+        {
+            id: 1,
+            size: 1,
+            material: 1,
+            amount: 1,
+            price: 10,
+            image: "photo_1.jpg",
+        },
+        {
+            id: 2,
+            size: 1,
+            material: 1,
+            amount: 1,
+            price: 10,
+            image: "photo_1.jpg",
+        },
+        {
+            id: 3,
+            size: 1,
+            material: 1,
+            amount: 1,
+            price: 10,
+            image: "photo_1.jpg",
+        },
+        {
+            id: 4,
+            size: 1,
+            material: 1,
+            amount: 1,
+            price: 10,
+            image: "photo_1.jpg",
+        },
+        {
+            id: 5,
+            size: 1,
+            material: 1,
+            amount: 1,
+            price: 10,
+            image: "photo_1.jpg",
+        },
+    ],
 };
 
 const toolkitSliceReduser = createSlice({
@@ -34,5 +75,5 @@ const toolkitSliceReduser = createSlice({
 
 export default toolkitSliceReduser.reducer;
 
-export const { setPrices, setMaterials, setSizes } =
+export const { setPrices, setMaterials, setSizes, addPhoto } =
     toolkitSliceReduser.actions;
