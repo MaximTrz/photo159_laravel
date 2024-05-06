@@ -1,18 +1,16 @@
 import * as React from "react";
 
-import Context from "../../context";
-
 import PriceTable from "../../components/price-table";
+import usePrices from "./usePrices";
 
 const Prices: React.FC = () => {
-    const { apiService } = React.useContext(Context);
     const {
         baseSizes,
         baseMaterials,
         souvenirSizes,
         souvenirMaterials,
         prices,
-    } = apiService.getPrices();
+    } = usePrices();
 
     return (
         <>
@@ -23,7 +21,7 @@ const Prices: React.FC = () => {
                 prices={prices}
             />
             <PriceTable
-                title="Цены на печать cувениров (руб.)"
+                title="Цены на печать сувениров (руб.)"
                 sizes={souvenirSizes}
                 materials={souvenirMaterials}
                 prices={prices}

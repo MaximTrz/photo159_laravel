@@ -7,7 +7,9 @@ const PhotosList: React.FC<{ photos: PhotoType[] }> = ({ photos }) => {
     return (
         <div className="photos-list">
             {photos.map((photo) => (
-                <PhotoItem key={photo.id} photo={photo} />
+                <div className="photos-list__item" key={photo.id}>
+                    <PhotoItem photo={photo} />
+                </div>
             ))}
         </div>
     );

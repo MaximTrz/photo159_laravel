@@ -54,7 +54,7 @@ const initialState: StateType = {
     ],
 };
 
-const toolkitSliceReduser = createSlice({
+const toolkitSlice = createSlice({
     name: "toolkit",
     initialState,
     reducers: {
@@ -73,7 +73,7 @@ const toolkitSliceReduser = createSlice({
     },
 });
 
-export default toolkitSliceReduser.reducer;
+export default toolkitSlice.reducer;
 
 export const { setPrices, setMaterials, setSizes, addPhoto } =
-    toolkitSliceReduser.actions;
+    toolkitSlice.actions;

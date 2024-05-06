@@ -1,4 +1,4 @@
 export default interface SelectPropsType {
     title: string;
-    options: { id: string; label: string }[];
+    options: { id: number; name: string }[];
 }

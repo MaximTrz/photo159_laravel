@@ -7,9 +7,14 @@ const Counter: React.FC<CounterPropsType> = ({ amount }) => {
         <div className="counter">
             <label className="counter__label">Кол-во:</label>
             <div className="counter__buttons">
-                <button className="counter__buttons">+</button>
-                <input className="counter__input" type="text" value={amount} />
                 <button className="counter__buttons">-</button>
+                <input
+                    className="counter__input"
+                    type="text"
+                    value={amount}
+                    readOnly
+                />
+                <button className="counter__buttons">+</button>
             </div>
         </div>
     );

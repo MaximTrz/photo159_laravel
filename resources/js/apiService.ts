@@ -5,10 +5,8 @@ import MaterialType from "./types/MaterialType";
 export default class ApiService {
     getPrices(): {
         prices: PriceType[];
-        baseSizes: SizeType[];
-        baseMaterials: MaterialType[];
-        souvenirSizes: SizeType[];
-        souvenirMaterials: MaterialType[];
+        sizes: SizeType[];
+        materials: MaterialType[];
     } {
         return {
             prices: [
@@ -1012,7 +1010,7 @@ export default class ApiService {
                     },
                 },
             ],
-            baseSizes: [
+            sizes: [
                 {
                     id: 2,
                     width: 10,
@@ -1103,8 +1101,48 @@ export default class ApiService {
                     updated_at: "2024-04-17T04:19:18.000000Z",
                     sort_order: 1,
                 },
+                {
+                    id: 11,
+                    width: 38,
+                    height: 38,
+                    comment: "мм",
+                    size_type_id: 2,
+                    created_at: "2024-04-26T09:00:31.000000Z",
+                    updated_at: "2024-04-26T09:00:31.000000Z",
+                    sort_order: 1,
+                },
+                {
+                    id: 12,
+                    width: 40,
+                    height: 40,
+                    comment: "мм",
+                    size_type_id: 2,
+                    created_at: "2024-04-26T09:00:47.000000Z",
+                    updated_at: "2024-04-26T09:00:47.000000Z",
+                    sort_order: 1,
+                },
+                {
+                    id: 13,
+                    width: 40,
+                    height: 56,
+                    comment: "мм",
+                    size_type_id: 2,
+                    created_at: "2024-04-26T09:01:00.000000Z",
+                    updated_at: "2024-04-26T09:01:00.000000Z",
+                    sort_order: 1,
+                },
+                {
+                    id: 14,
+                    width: 56,
+                    height: 56,
+                    comment: "мм",
+                    size_type_id: 2,
+                    created_at: "2024-04-26T09:01:14.000000Z",
+                    updated_at: "2024-04-26T09:01:14.000000Z",
+                    sort_order: 1,
+                },
             ],
-            baseMaterials: [
+            materials: [
                 {
                     id: 1,
                     name: "Глянцевая",
@@ -1177,50 +1215,6 @@ export default class ApiService {
                     updated_at: "2024-04-17T04:22:48.000000Z",
                     sort_order: 1,
                 },
-            ],
-            souvenirSizes: [
-                {
-                    id: 11,
-                    width: 38,
-                    height: 38,
-                    comment: "мм",
-                    size_type_id: 2,
-                    created_at: "2024-04-26T09:00:31.000000Z",
-                    updated_at: "2024-04-26T09:00:31.000000Z",
-                    sort_order: 1,
-                },
-                {
-                    id: 12,
-                    width: 40,
-                    height: 40,
-                    comment: "мм",
-                    size_type_id: 2,
-                    created_at: "2024-04-26T09:00:47.000000Z",
-                    updated_at: "2024-04-26T09:00:47.000000Z",
-                    sort_order: 1,
-                },
-                {
-                    id: 13,
-                    width: 40,
-                    height: 56,
-                    comment: "мм",
-                    size_type_id: 2,
-                    created_at: "2024-04-26T09:01:00.000000Z",
-                    updated_at: "2024-04-26T09:01:00.000000Z",
-                    sort_order: 1,
-                },
-                {
-                    id: 14,
-                    width: 56,
-                    height: 56,
-                    comment: "мм",
-                    size_type_id: 2,
-                    created_at: "2024-04-26T09:01:14.000000Z",
-                    updated_at: "2024-04-26T09:01:14.000000Z",
-                    sort_order: 1,
-                },
-            ],
-            souvenirMaterials: [
                 {
                     id: 10,
                     name: "Брелок Акриловый",
