@@ -14,16 +14,27 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     return (
         <div className="photo-item">
             <img src={photo.image} className="photo-item__image" alt="Фото" />
-            <div className="photo-item__size">
-                <Select title="Размер" options={sizesForSelect} />
+            <div className="photo-item__select">
+                <div className="photo-item__select-title">Размер:</div>
+                <div className="photo-item__select-item">
+                    <Select options={sizesForSelect} />
+                </div>
             </div>
-            <div className="photo-item__material">
-                <Select title="Материал" options={materials} />
+            <div className="photo-item__select">
+                <div className="photo-item__select-title">Материал:</div>
+                <div className="photo-item__select-item">
+                    <Select options={materials} />
+                </div>
             </div>
-            <div className="photo-item__amount">
-                <Counter amount={photo.amount} />
+            <div className="photo-item__select">
+                <div className="photo-item__select-title">Кол-во:</div>
+                <div className="photo-item__select-item">
+                    <Counter amount={photo.amount} />
+                </div>
             </div>
-            <div className="photo-item__sum">{photo.price * photo.amount}</div>
+            <div className="photo-item__sum">
+                Цена: {photo.price * photo.amount} ₽
+            </div>
         </div>
     );
 };

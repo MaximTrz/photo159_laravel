@@ -15,7 +15,6 @@ const Layout: React.FC = () => {
     const photosList = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.photos,
     );
-    console.log(photosList);
 
     return (
         <div className="layout">

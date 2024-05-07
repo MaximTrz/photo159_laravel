@@ -1,0 +1,20 @@
+.counter {
+    display: flex;
+    justify-content: space-between;
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__input {
+        width: 100%;
+        text-align: center;
+    }
+    &__button {
+        display: block;
+        text-align: center;
+        width: 25px;
+        background-color: #52a8ff;
+        padding: 3px;
+        cursor: pointer;
+    }
+}

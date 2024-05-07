@@ -1,7 +1,7 @@
 .select-item {
-    display: flex;
-    justify-content: space-between;
     &__select {
-        max-width: 100px;
+        max-width: 100%;
+        padding: 3px;
+        border: 1px solid #52a8ff;
     }
 }

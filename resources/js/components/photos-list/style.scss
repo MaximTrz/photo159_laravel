@@ -1,5 +1,7 @@
 .photos-list {
     display: grid;
-    gap: 10px;
+    gap: 40px;
     grid-template-columns: repeat(auto-fit, 180px);
+    padding: 16px;
+    background-color: #fff;
 }

@@ -1,0 +1,14 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+.photo-item {
+    font-size: 16px;
+    font-family: "Myriad Pro Regular";
+    &__select {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    &__select-item {
+        max-width: 100px;
+    }
+}

@@ -15,26 +15,29 @@
     @include tablet {
         padding: 20px 0px 0 0px;
     }
-}
-
-.layout__header {
-    grid-area: header;
-    @include tablet {
-        display: flex;
-        flex-direction: column-reverse;
+    &__header {
+        grid-area: header;
+        @include tablet {
+            display: flex;
+            flex-direction: column-reverse;
+        }
     }
-}
 
-.layout__main {
-    grid-area: main;
-    background-color: $bgc;
-    padding: 15px;
-}
+    &__main {
+        grid-area: main;
+        background-color: $bgc;
+        padding: 15px;
+    }
 
-.layout__content {
-    background-color: #fff;
-}
+    &__photos {
+        margin-bottom: 50px;
+    }
 
-.layout__footer {
-    grid-area: footer;
+    &__content {
+        background-color: #fff;
+    }
+
+    &__footer {
+        grid-area: footer;
+    }
 }
