@@ -12,7 +12,7 @@ import ApiService from "./apiService";
 import "./bootstrap";
 import "normalize.css";
 import "./style/app.scss";
-import { setMaterials, setPrices, setSizes } from "./store/Reducer";
+import { setMargins, setMaterials, setPrices, setSizes } from "./store/Reducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const contextValue = { apiService: new ApiService() };
@@ -26,6 +26,7 @@ const App = () => {
     dispatch(setMaterials(priceData.materials));
     dispatch(setSizes(priceData.sizes));
     dispatch(setPrices(priceData.prices));
+    dispatch(setMargins(priceData.margins));
 
     return <Router />;
 };

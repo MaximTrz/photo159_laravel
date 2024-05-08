@@ -7,8 +7,30 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 5px;
+        align-items: center;
+        &.--mb10 {
+            margin-bottom: 12px;
+        }
     }
     &__select-item {
         max-width: 100px;
+    }
+    &__image {
+        height: 130px;
+        margin-bottom: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    &__sum {
+        margin-bottom: 10px;
+    }
+    &__sum-digit {
+        font-family: "Myriad Pro bold";
+    }
+    &__del {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
     }
 }

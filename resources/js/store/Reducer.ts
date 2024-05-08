@@ -5,11 +5,13 @@ import PriceType from "../types/PriceType";
 import MaterialType from "../types/MaterialType";
 import SizeType from "../types/SizeType";
 import PhotoType from "../types/PhotoType";
+import OptionsType from "../types/OptionsType";
 
 const initialState: StateType = {
     prices: [],
     materials: [],
     sizes: [],
+    margins: [],
     photos: [
         {
             id: 1,
@@ -17,7 +19,7 @@ const initialState: StateType = {
             material: 1,
             amount: 1,
             price: 10,
-            image: "photo_1.jpg",
+            image: "1.jpg",
         },
         {
             id: 2,
@@ -25,7 +27,7 @@ const initialState: StateType = {
             material: 1,
             amount: 1,
             price: 10,
-            image: "photo_1.jpg",
+            image: "1.jpg",
         },
         {
             id: 3,
@@ -33,7 +35,7 @@ const initialState: StateType = {
             material: 1,
             amount: 1,
             price: 10,
-            image: "photo_1.jpg",
+            image: "1.jpg",
         },
         {
             id: 4,
@@ -41,7 +43,7 @@ const initialState: StateType = {
             material: 1,
             amount: 1,
             price: 10,
-            image: "photo_1.jpg",
+            image: "1.jpg",
         },
         {
             id: 5,
@@ -49,7 +51,7 @@ const initialState: StateType = {
             material: 1,
             amount: 1,
             price: 10,
-            image: "photo_1.jpg",
+            image: "1.jpg",
         },
     ],
 };
@@ -67,6 +69,9 @@ const toolkitSlice = createSlice({
         setSizes: (state, { payload }: { payload: SizeType[] }) => {
             state.sizes = payload;
         },
+        setMargins: (state, { payload }: { payload: OptionsType[] }) => {
+            state.margins = payload;
+        },
         addPhoto: (state, { payload }: { payload: PhotoType }) => {
             state.photos.push(payload);
         },
@@ -75,5 +80,5 @@ const toolkitSlice = createSlice({
 
 export default toolkitSlice.reducer;
 
-export const { setPrices, setMaterials, setSizes, addPhoto } =
+export const { setPrices, setMaterials, setSizes, addPhoto, setMargins } =
     toolkitSlice.actions;

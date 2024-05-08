@@ -14,7 +14,10 @@ const usePhotoItem = () => {
     const materials = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.materials,
     );
-    return { materials, sizesForSelect };
+    const margins = useSelector(
+        (state: ToolKitStateType) => state.toolkitSlice.margins,
+    );
+    return { materials, sizesForSelect, margins };
 };
 
 export default usePhotoItem;

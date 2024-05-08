@@ -2,10 +2,12 @@ import PriceType from "./PriceType";
 import PhotoType from "./PhotoType";
 import SizeType from "./SizeType";
 import MaterialType from "./MaterialType";
+import OptionslType from "./OptionsType";
 
 export default interface StateType {
     prices: PriceType[];
     materials: MaterialType[];
     sizes: SizeType[];
     photos: PhotoType[];
+    margins: OptionslType[];
 }

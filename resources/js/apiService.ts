@@ -7,8 +7,13 @@ export default class ApiService {
         prices: PriceType[];
         sizes: SizeType[];
         materials: MaterialType[];
+        margins: { id: number; name: string }[];
     } {
         return {
+            margins: [
+                { id: 1, name: "Без полей" },
+                { id: 2, name: "С полями" },
+            ],
             prices: [
                 {
                     id: 2,
@@ -1250,5 +1255,4 @@ export default class ApiService {
             ],
         };
     }
-    getExercise() {}
 }
