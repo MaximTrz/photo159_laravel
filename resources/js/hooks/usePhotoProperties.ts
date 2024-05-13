@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import ToolKitStateType from "../../types/ToolKitStateType";
+import ToolKitStateType from "../types/ToolKitStateType";
 
-const usePhotoItem = () => {
+const usePhotoProperties = () => {
     const sizes = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.sizes,
     );
@@ -20,4 +20,4 @@ const usePhotoItem = () => {
     return { materials, sizesForSelect, margins };
 };
 
-export default usePhotoItem;
+export default usePhotoProperties;

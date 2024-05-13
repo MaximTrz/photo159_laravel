@@ -6,10 +6,10 @@ import PhotoType from "../../types/PhotoType";
 import Select from "../select-item";
 
 import "./style.scss";
-import usePhotoItem from "./usePhotoItem";
+import usePhotoProperties from "../../hooks/usePhotoProperties";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
-    const { sizesForSelect, materials, margins } = usePhotoItem();
+    const { sizesForSelect, materials, margins } = usePhotoProperties();
 
     return (
         <div className="photo-item">

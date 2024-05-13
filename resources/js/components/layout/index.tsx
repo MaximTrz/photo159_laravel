@@ -1,21 +1,15 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import TabsList from "../tabs-list";
 import Header from "../header";
 
 import Prices from "../../pages/prices";
+import Photos from "../photos";
 
-import ToolKitStateType from "../../types/ToolKitStateType";
 import "./style.scss";
-import PhotosList from "../photos-list";
 
 const Layout: React.FC = () => {
-    const photosList = useSelector(
-        (state: ToolKitStateType) => state.toolkitSlice.photos,
-    );
-
     return (
         <div className="layout">
             <header className="layout__header">
@@ -26,7 +20,7 @@ const Layout: React.FC = () => {
             </header>
             <main className="layout__main">
                 <div className="layout__photos">
-                    <PhotosList photos={photosList} />
+                    <Photos />
                 </div>
                 <div className="layout__content">
                     <Routes>
