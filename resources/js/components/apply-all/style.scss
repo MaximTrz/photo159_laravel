@@ -1,0 +1,45 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.apply-all {
+    font-family: "Myriad Pro Regular";
+    &__title {
+        background: #000;
+        color: #fff;
+        padding: 7px 0;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    &__input-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        &.--mb10 {
+            margin-bottom: 10px;
+        }
+        &.--mb20 {
+            margin-bottom: 20px;
+        }
+    }
+    &__input-title {
+        margin-right: 5px;
+    }
+    &__input {
+        font-size: 14px;
+        max-width: 140px;
+    }
+    &__aply-button {
+        font-family: $second-font-family;
+        color: #fff;
+        background-color: $base-blue;
+        width: 100%;
+        font-size: 25px;
+        padding: 5px 27px;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($base-blue, 15%);
+        }
+    }
+}

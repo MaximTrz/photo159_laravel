@@ -1,0 +1,17 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.checkout-button {
+    font-family: $second-font-family;
+    clip-path: polygon(93% 0, 100% 50%, 93% 100%, 0% 100%, 0 45%, 0% 0%);
+    display: block;
+    padding: 5px 70px;
+    border: none;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    background-color: $base-green;
+    &:hover {
+        background-color: darken($base-green, 15%);
+    }
+}

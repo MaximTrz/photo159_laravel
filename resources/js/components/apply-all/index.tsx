@@ -3,11 +3,13 @@ import Select from "../select-item";
 import Counter from "../counter";
 import usePhotoProperties from "../../hooks/usePhotoProperties";
 
+import "./style.scss";
+
 const ApplyAll: React.FC = () => {
     const { sizesForSelect, materials, margins } = usePhotoProperties();
     return (
         <div className="apply-all">
-            <div className="aplly-all__title">Применить ко всем:</div>
+            <div className="apply-all__title">Применить ко всем:</div>
             <div className="apply-all__input-item">
                 <div className="apply-all__input-title">Размер:</div>
                 <div className="apply-all__input">
@@ -20,13 +22,13 @@ const ApplyAll: React.FC = () => {
                     <Select options={materials} />
                 </div>
             </div>
-            <div className="apply-all__input-item">
+            <div className="apply-all__input-item --mb10">
                 <div className="apply-all__input-title">Кол-во:</div>
                 <div className="apply-all__input">
                     <Counter amount={1} />
                 </div>
             </div>
-            <div className="apply-all__input-item">
+            <div className="apply-all__input-item --mb20">
                 <div className="apply-all__input-title">Поля:</div>
                 <div className="apply-all__input">
                     <Select options={margins} />

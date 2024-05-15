@@ -1,0 +1,16 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.delete-all {
+    font-family: $second-font-family;
+    display: block;
+    padding: 5px 70px;
+    border: none;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    background-color: $base-red;
+    &:hover {
+        background-color: darken($base-red, 15%);
+    }
+}

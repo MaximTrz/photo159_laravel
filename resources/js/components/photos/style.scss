@@ -1,0 +1,36 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+.photos {
+    &__header {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__header-text {
+        font-family: "Myriad Pro Regular";
+        font-size: 20px;
+    }
+    &__header-delete-button {
+        margin-right: 30px;
+    }
+    &__header-buttons {
+        display: flex;
+    }
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+    &__items {
+        flex-basis: 880px;
+    }
+    &__footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+}
