@@ -9,13 +9,13 @@ const PriceTableRow: React.FC<PriceTableRowPorpsType> = ({
     material,
     prices,
 }) => {
-    const { findPrice } = usePriceTableRow();
+    const { getPrice } = usePriceTableRow();
     return (
         <tr className="price-table-row">
             <th className="price-table-row__head">{material.name}</th>
             {sizes.map((size, index) => (
                 <td className="price-table-row__price" key={index}>
-                    {findPrice(size, material, prices)}
+                    {getPrice(size, material, prices)}
                 </td>
             ))}
         </tr>

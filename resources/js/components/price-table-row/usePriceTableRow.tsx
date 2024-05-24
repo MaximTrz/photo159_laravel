@@ -4,22 +4,19 @@ import SizeType from "../../types/SizeType";
 import MaterialType from "../../types/MaterialType";
 import PriceType from "../../types/PriceType";
 
+import findPrice from "../../utils/findPrice";
+
 const usePriceTableRow = () => {
-    const findPrice = React.useCallback(
+    const getPrice = React.useCallback(
         (size: SizeType, material: MaterialType, prices: PriceType[]) => {
-            const price = prices.find(
-                (item) =>
-                    item.size.id === size.id &&
-                    item.material.id === material.id,
-            );
-            const result = price ? price.price : "-";
-            return result;
+            const price = findPrice(size, material, prices);
+            return price;
         },
         [],
     );
 
     return {
-        findPrice,
+        getPrice,
     };
 };
 

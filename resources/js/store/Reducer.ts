@@ -88,14 +88,6 @@ const toolkitSlice = createSlice({
                 }
             }
         },
-        getPrice: (
-            state,
-            {
-                payload,
-            }: { payload: { size: SizeType; material: MaterialType } },
-        ) => {
-            console.log(payload);
-        },
     },
 });
 
