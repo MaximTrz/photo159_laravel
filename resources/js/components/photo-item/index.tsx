@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
+
+import { setAmount } from "../../store/Reducer";
 
 import Counter from "../counter";
 import PhotoType from "../../types/PhotoType";
@@ -10,6 +13,17 @@ import usePhotoProperties from "../../hooks/usePhotoProperties";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const { sizesForSelect, materials, margins } = usePhotoProperties();
+    const dispatch = useDispatch();
+
+    const handleClickPlusAmount = () => {
+        const newValue = photo.amount + 1;
+        dispatch(setAmount({ id: photo.id, amount: newValue }));
+    };
+
+    const handleClickMinusAmount = () => {
+        const newValue = photo.amount - 1;
+        dispatch(setAmount({ id: photo.id, amount: newValue }));
+    };
 
     return (
         <div className="photo-item">
@@ -35,7 +49,11 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             <div className="photo-item__select --mb10">
                 <div className="photo-item__select-title">Кол-во:</div>
                 <div className="photo-item__select-item">
-                    <Counter amount={photo.amount} />
+                    <Counter
+                        amount={photo.amount}
+                        inc={handleClickPlusAmount}
+                        dec={handleClickMinusAmount}
+                    />
                 </div>
             </div>
             <div className="photo-item__sum">

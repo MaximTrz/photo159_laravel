@@ -75,10 +75,37 @@ const toolkitSlice = createSlice({
         addPhoto: (state, { payload }: { payload: PhotoType }) => {
             state.photos.push(payload);
         },
+        setAmount: (
+            state,
+            { payload }: { payload: { id: number; amount: number } },
+        ) => {
+            const photoToUpdate = state.photos.find(
+                (photo) => photo.id === payload.id,
+            );
+            if (photoToUpdate) {
+                if (payload.amount > 0) {
+                    photoToUpdate.amount = payload.amount;
+                }
+            }
+        },
+        getPrice: (
+            state,
+            {
+                payload,
+            }: { payload: { size: SizeType; material: MaterialType } },
+        ) => {
+            console.log(payload);
+        },
     },
 });
 
 export default toolkitSlice.reducer;
 
-export const { setPrices, setMaterials, setSizes, addPhoto, setMargins } =
-    toolkitSlice.actions;
+export const {
+    setPrices,
+    setMaterials,
+    setSizes,
+    addPhoto,
+    setMargins,
+    setAmount,
+} = toolkitSlice.actions;
