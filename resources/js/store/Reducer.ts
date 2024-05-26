@@ -15,40 +15,40 @@ const initialState: StateType = {
     photos: [
         {
             id: 1,
-            size: 1,
-            material: 1,
+            size_id: 2,
+            material_id: 1,
             amount: 1,
             price: 10,
             image: "1.jpg",
         },
         {
             id: 2,
-            size: 1,
-            material: 1,
+            size_id: 2,
+            material_id: 1,
             amount: 1,
             price: 10,
             image: "1.jpg",
         },
         {
             id: 3,
-            size: 1,
-            material: 1,
+            size_id: 2,
+            material_id: 1,
             amount: 1,
             price: 10,
             image: "1.jpg",
         },
         {
             id: 4,
-            size: 1,
-            material: 1,
+            size_id: 2,
+            material_id: 1,
             amount: 1,
             price: 10,
             image: "1.jpg",
         },
         {
             id: 5,
-            size: 1,
-            material: 1,
+            size_id: 2,
+            material_id: 1,
             amount: 1,
             price: 10,
             image: "1.jpg",
@@ -87,6 +87,12 @@ const toolkitSlice = createSlice({
                     photoToUpdate.amount = payload.amount;
                 }
             }
+        },
+        setPhotoSize: (state, { payload }: { payload: { id: number } }) => {
+            const photoToUpdate = state.photos.find(
+                (photo) => photo.id === payload.id,
+            );
+            console.log(state, payload, photoToUpdate);
         },
     },
 });
