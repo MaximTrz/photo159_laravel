@@ -95,8 +95,17 @@ const toolkitSlice = createSlice({
             const photoToUpdate = state.photos.find(
                 (photo) => photo.id === payload.id,
             );
+
+            const price = state.prices.find(
+                (price) =>
+                    price.size_id === payload.sizeId &&
+                    price.material_id === photoToUpdate?.material_id,
+            );
+
             if (photoToUpdate) {
-                photoToUpdate.size_id = payload.sizeId;
+                if (price) {
+                    photoToUpdate.size_id = payload.sizeId;
+                }
             }
         },
         setPhotoMaterial: (
