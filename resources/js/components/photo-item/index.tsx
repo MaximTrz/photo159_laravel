@@ -7,12 +7,15 @@ import Counter from "../counter";
 import PhotoType from "../../types/PhotoType";
 
 import Select from "../select-item";
+import usePhotoProperties from "../../hooks/usePhotoProperties";
+import usePhtotoItem from "./usePhtotoItem";
 
 import "./style.scss";
-import usePhotoProperties from "../../hooks/usePhotoProperties";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const { sizesForSelect, materials, margins } = usePhotoProperties();
+    const { getPrice } = usePhtotoItem();
+
     const dispatch = useDispatch();
 
     const handleClickPlusAmount = () => {
@@ -59,7 +62,8 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             <div className="photo-item__sum">
                 Цена:{" "}
                 <span className="photo-item__sum-digit">
-                    {photo.price * photo.amount}
+                    {Number(getPrice(photo.size_id, photo.material_id)) *
+                        photo.amount}
                 </span>{" "}
                 ₽
             </div>
