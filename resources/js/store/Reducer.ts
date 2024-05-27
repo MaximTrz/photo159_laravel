@@ -123,4 +123,5 @@ export const {
     setMargins,
     setAmount,
     setPhotoMaterial,
+    setPhotoSize,
 } = toolkitSlice.actions;

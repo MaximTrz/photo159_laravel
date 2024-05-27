@@ -13,8 +13,10 @@ import usePhtotoItem from "./usePhtotoItem";
 import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
+    const dispatch = useDispatch();
+
     const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
-    const { getPrice, setMaterial } = usePhtotoItem();
+    const { getPrice, setMaterial, setSize } = usePhtotoItem();
 
     const filteredMaterials = materials.filter((material) => {
         const price = prices.find(
@@ -26,8 +28,6 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             return material;
         }
     });
-
-    const dispatch = useDispatch();
 
     const handleClickPlusAmount = () => {
         const newValue = photo.amount + 1;
@@ -41,6 +41,10 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
 
     const handleSelectMaterial = (selectedId: number) => {
         setMaterial(photo.id, selectedId);
+    };
+
+    const handleSelectSize = (selectedId: number) => {
+        setSize(photo.id, selectedId);
     };
 
     return (
@@ -57,7 +61,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-item">
                     <Select
                         options={sizesForSelect}
-                        handleSelect={handleSelectMaterial}
+                        handleSelect={handleSelectSize}
                     />
                 </div>
             </div>

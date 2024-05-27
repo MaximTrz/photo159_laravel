@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../../types/ToolKitStateType";
-import { setPhotoMaterial } from "../../store/Reducer";
+import { setPhotoMaterial, setPhotoSize } from "../../store/Reducer";
 
 import findPrice from "../../utils/findPrice";
 
@@ -36,7 +36,9 @@ const usePhtotoItem = () => {
         },
         [],
     );
-    const setSize = React.useCallback(() => {}, []);
+    const setSize = React.useCallback((photoId: number, sizeId: number) => {
+        dispatch(setPhotoSize({ id: photoId, sizeId: sizeId }));
+    }, []);
 
     return {
         getPrice,
