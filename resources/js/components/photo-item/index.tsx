@@ -61,6 +61,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-item">
                     <Select
                         options={sizesForSelect}
+                        selected={photo.size_id}
                         handleSelect={handleSelectSize}
                     />
                 </div>
@@ -70,6 +71,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-item">
                     <Select
                         options={filteredMaterials}
+                        selected={photo.material_id}
                         handleSelect={handleSelectMaterial}
                     />
                 </div>
@@ -97,6 +99,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-item">
                     <Select
                         options={margins}
+                        selected={1}
                         handleSelect={handleSelectMaterial}
                     />
                 </div>

@@ -105,6 +105,14 @@ const toolkitSlice = createSlice({
             if (photoToUpdate) {
                 if (price) {
                     photoToUpdate.size_id = payload.sizeId;
+                } else {
+                    const correctPrice = state.prices.find(
+                        (price) => price.size_id === payload.sizeId,
+                    );
+                    if (correctPrice) {
+                        photoToUpdate.size_id = payload.sizeId;
+                        photoToUpdate.material_id = correctPrice.material_id;
+                    }
                 }
             }
         },

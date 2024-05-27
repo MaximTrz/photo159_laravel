@@ -3,7 +3,11 @@ import SelectPropsType from "../../types/SelectPropsType";
 
 import "./style.scss";
 
-const Select: React.FC<SelectPropsType> = ({ options, handleSelect }) => {
+const Select: React.FC<SelectPropsType> = ({
+    options,
+    selected,
+    handleSelect,
+}) => {
     const handleSelectChange = (event) => {
         const selectedId = parseInt(event.target.value);
         handleSelect(selectedId);
@@ -12,6 +16,7 @@ const Select: React.FC<SelectPropsType> = ({ options, handleSelect }) => {
         <div className="select-item">
             <select
                 className="select-item__select"
+                value={selected}
                 onChange={handleSelectChange}
             >
                 {options.map((item) => {
