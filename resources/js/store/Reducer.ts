@@ -18,15 +18,15 @@ const initialState: StateType = {
             size_id: 2,
             material_id: 1,
             amount: 1,
-            price: 10,
             image: "1.jpg",
+            margin_id: 1,
         },
         {
             id: 2,
             size_id: 2,
             material_id: 1,
             amount: 1,
-            price: 10,
+            margin_id: 1,
             image: "1.jpg",
         },
         {
@@ -34,7 +34,7 @@ const initialState: StateType = {
             size_id: 2,
             material_id: 1,
             amount: 1,
-            price: 10,
+            margin_id: 1,
             image: "1.jpg",
         },
         {
@@ -42,7 +42,7 @@ const initialState: StateType = {
             size_id: 2,
             material_id: 1,
             amount: 1,
-            price: 10,
+            margin_id: 1,
             image: "1.jpg",
         },
         {
@@ -50,7 +50,7 @@ const initialState: StateType = {
             size_id: 2,
             material_id: 1,
             amount: 1,
-            price: 10,
+            margin_id: 1,
             image: "1.jpg",
         },
     ],
@@ -143,6 +143,17 @@ const toolkitSlice = createSlice({
                 }
             }
         },
+        setPhotoMargin: (
+            state,
+            { payload }: { payload: { id: number; marginId: number } },
+        ) => {
+            const photoToUpdate = state.photos.find(
+                (photo) => photo.id === payload.id,
+            );
+            if (photoToUpdate) {
+                photoToUpdate.margin_id = payload.marginId;
+            }
+        },
     },
 });
 
@@ -157,4 +168,5 @@ export const {
     setAmount,
     setPhotoMaterial,
     setPhotoSize,
+    setPhotoMargin,
 } = toolkitSlice.actions;

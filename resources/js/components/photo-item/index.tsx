@@ -16,7 +16,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
 
     const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
-    const { getPrice, setMaterial, setSize } = usePhtotoItem();
+    const { getPrice, setMaterial, setSize, setMargin } = usePhtotoItem();
 
     const filteredSizes = sizesForSelect.filter((size) => {
         const price = prices.find(
@@ -45,6 +45,10 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
 
     const handleSelectSize = (selectedId: number) => {
         setSize(photo.id, selectedId);
+    };
+
+    const handleSelectMargin = (selectedId: number) => {
+        setMargin(photo.id, selectedId);
     };
 
     return (
@@ -101,8 +105,8 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-item">
                     <Select
                         options={margins}
-                        selected={1}
-                        handleSelect={handleSelectMaterial}
+                        selected={photo.margin_id}
+                        handleSelect={handleSelectMargin}
                     />
                 </div>
             </div>

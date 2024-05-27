@@ -3,6 +3,6 @@ export default interface PhotoType {
     size_id: number;
     material_id: number;
     amount: number;
-    price: number;
+    margin_id: number;
     image: string;
 }
