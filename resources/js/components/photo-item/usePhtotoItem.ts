@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../../types/ToolKitStateType";
+import { setPhotoMaterial } from "../../store/Reducer";
 
 import findPrice from "../../utils/findPrice";
 
@@ -14,6 +15,9 @@ const usePhtotoItem = () => {
     const prices = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.prices,
     );
+
+    const dispatch = useDispatch();
+
     const getPrice = React.useCallback((sizeId: number, materialId: number) => {
         const size = sizes.find((size) => size.id === sizeId);
         const material = materials.find(
@@ -26,9 +30,12 @@ const usePhtotoItem = () => {
         return 0;
     }, []);
 
-    const setMaterial = React.useCallback((photoId: number) => {
-        console.log(photoId);
-    }, []);
+    const setMaterial = React.useCallback(
+        (photoId: number, materialId: number) => {
+            dispatch(setPhotoMaterial({ id: photoId, materialId: materialId }));
+        },
+        [],
+    );
     const setSize = React.useCallback(() => {}, []);
 
     return {

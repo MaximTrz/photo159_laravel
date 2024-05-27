@@ -14,7 +14,7 @@ import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const { sizesForSelect, materials, margins } = usePhotoProperties();
-    const { getPrice } = usePhtotoItem();
+    const { getPrice, setMaterial } = usePhtotoItem();
 
     const dispatch = useDispatch();
 
@@ -26,6 +26,10 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const handleClickMinusAmount = () => {
         const newValue = photo.amount - 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
+    };
+
+    const handleSelectMaterial = (selectedId: number) => {
+        setMaterial(photo.id, selectedId);
     };
 
     return (
@@ -40,13 +44,19 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             <div className="photo-item__select">
                 <div className="photo-item__select-title">Размер:</div>
                 <div className="photo-item__select-item">
-                    <Select options={sizesForSelect} />
+                    <Select
+                        options={sizesForSelect}
+                        handleSelect={handleSelectMaterial}
+                    />
                 </div>
             </div>
             <div className="photo-item__select">
                 <div className="photo-item__select-title">Материал:</div>
                 <div className="photo-item__select-item">
-                    <Select options={materials} />
+                    <Select
+                        options={materials}
+                        handleSelect={handleSelectMaterial}
+                    />
                 </div>
             </div>
             <div className="photo-item__select --mb10">
@@ -70,7 +80,10 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             <div className="photo-item__select --mb10">
                 <div className="photo-item__select-title">Поля:</div>
                 <div className="photo-item__select-item">
-                    <Select options={margins} />
+                    <Select
+                        options={margins}
+                        handleSelect={handleSelectMaterial}
+                    />
                 </div>
             </div>
 

@@ -88,11 +88,27 @@ const toolkitSlice = createSlice({
                 }
             }
         },
-        setPhotoSize: (state, { payload }: { payload: { id: number } }) => {
+        setPhotoSize: (
+            state,
+            { payload }: { payload: { id: number; sizeId: number } },
+        ) => {
             const photoToUpdate = state.photos.find(
                 (photo) => photo.id === payload.id,
             );
-            console.log(state, payload, photoToUpdate);
+            if (photoToUpdate) {
+                photoToUpdate.size_id = payload.sizeId;
+            }
+        },
+        setPhotoMaterial: (
+            state,
+            { payload }: { payload: { id: number; materialId: number } },
+        ) => {
+            const photoToUpdate = state.photos.find(
+                (photo) => photo.id === payload.id,
+            );
+            if (photoToUpdate) {
+                photoToUpdate.material_id = payload.materialId;
+            }
         },
     },
 });
@@ -106,4 +122,5 @@ export const {
     addPhoto,
     setMargins,
     setAmount,
+    setPhotoMaterial,
 } = toolkitSlice.actions;
