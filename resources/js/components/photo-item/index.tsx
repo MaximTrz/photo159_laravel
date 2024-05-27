@@ -29,6 +29,17 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
         }
     });
 
+    const filteredSizes = sizesForSelect.filter((size) => {
+        const price = prices.find(
+            (price) =>
+                price.size_id === size.id &&
+                price.material_id === photo.material_id,
+        );
+        if (price) {
+            return size;
+        }
+    });
+
     const handleClickPlusAmount = () => {
         const newValue = photo.amount + 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
@@ -57,16 +68,6 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             ></div>
 
             <div className="photo-item__select">
-                <div className="photo-item__select-title">Размер:</div>
-                <div className="photo-item__select-item">
-                    <Select
-                        options={sizesForSelect}
-                        selected={photo.size_id}
-                        handleSelect={handleSelectSize}
-                    />
-                </div>
-            </div>
-            <div className="photo-item__select">
                 <div className="photo-item__select-title">Материал:</div>
                 <div className="photo-item__select-item">
                     <Select
@@ -76,6 +77,18 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                     />
                 </div>
             </div>
+
+            <div className="photo-item__select">
+                <div className="photo-item__select-title">Размер:</div>
+                <div className="photo-item__select-item">
+                    <Select
+                        options={sizesForSelect}
+                        selected={photo.size_id}
+                        handleSelect={handleSelectSize}
+                    />
+                </div>
+            </div>
+
             <div className="photo-item__select --mb10">
                 <div className="photo-item__select-title">Кол-во:</div>
                 <div className="photo-item__select-item">

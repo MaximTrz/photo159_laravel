@@ -25,7 +25,7 @@ const usePhtotoItem = () => {
         );
         if (size && material) {
             const price = findPrice(size, material, prices);
-            return price;
+            return price?.price;
         }
         return 0;
     }, []);

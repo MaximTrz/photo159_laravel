@@ -10,8 +10,7 @@ const findPrice = (
     const price = prices.find(
         (item) => item.size.id === size.id && item.material.id === material.id,
     );
-    const result = price ? price.price : "-";
-    return result;
+    return price;
 };
 
 export default findPrice;
