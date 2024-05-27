@@ -14,7 +14,6 @@ const usePriceTableRow = () => {
         },
         [],
     );
-
     return {
         getPrice,
     };
