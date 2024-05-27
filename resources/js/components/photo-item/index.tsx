@@ -13,8 +13,19 @@ import usePhtotoItem from "./usePhtotoItem";
 import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
-    const { sizesForSelect, materials, margins } = usePhotoProperties();
+    const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
     const { getPrice, setMaterial } = usePhtotoItem();
+
+    const filteredMaterials = materials.filter((material) => {
+        const price = prices.find(
+            (price) =>
+                price.material_id === material.id &&
+                price.size_id === photo.size_id,
+        );
+        if (price) {
+            return material;
+        }
+    });
 
     const dispatch = useDispatch();
 
@@ -54,7 +65,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 <div className="photo-item__select-title">Материал:</div>
                 <div className="photo-item__select-item">
                     <Select
-                        options={materials}
+                        options={filteredMaterials}
                         handleSelect={handleSelectMaterial}
                     />
                 </div>

@@ -17,7 +17,12 @@ const usePhotoProperties = () => {
     const margins = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.margins,
     );
-    return { materials, sizesForSelect, margins };
+
+    const prices = useSelector(
+        (state: ToolKitStateType) => state.toolkitSlice.prices,
+    );
+
+    return { materials, sizesForSelect, margins, prices };
 };
 
 export default usePhotoProperties;
