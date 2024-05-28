@@ -3,7 +3,11 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
 
-import { setPhotoMaterial, setPhotoSize } from "../store/Reducer";
+import {
+    setPhotoMaterial,
+    setPhotoSize,
+    setPhotoMargin,
+} from "../store/Reducer";
 
 import PhotoType from "../types/PhotoType";
 
@@ -108,6 +112,12 @@ const usePhotoProperties = () => {
         },
         [dispatch, findPriceByIDs, prices],
     );
+    const setMargin = React.useCallback(
+        (photoId: number, margin_id: number) => {
+            dispatch(setPhotoMargin({ id: photoId, marginId: margin_id }));
+        },
+        [],
+    );
 
     return {
         materials,
@@ -117,6 +127,7 @@ const usePhotoProperties = () => {
         setMaterial,
         setSize,
         findPriceByIDs,
+        setMargin,
     };
 };
 

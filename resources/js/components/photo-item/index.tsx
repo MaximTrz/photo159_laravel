@@ -23,8 +23,9 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
         setMaterial,
         setSize,
         findPriceByIDs,
+        setMargin,
     } = usePhotoProperties();
-    const { setMargin, deletePhtotoById } = usePhtotoItem();
+    const { deletePhtotoById } = usePhtotoItem();
 
     const filteredSizes = sizesForSelect.filter((size) => {
         const price = prices.find(
