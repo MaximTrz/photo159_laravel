@@ -16,7 +16,8 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
 
     const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
-    const { getPrice, setMaterial, setSize, setMargin } = usePhtotoItem();
+    const { getPrice, setMaterial, setSize, setMargin, deletePhtotoById } =
+        usePhtotoItem();
 
     const filteredSizes = sizesForSelect.filter((size) => {
         const price = prices.find(
@@ -111,7 +112,14 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 </div>
             </div>
 
-            <div className="photo-item__del">Удалить фото</div>
+            <div
+                className="photo-item__del"
+                onClick={() => {
+                    deletePhtotoById(photo.id);
+                }}
+            >
+                Удалить фото
+            </div>
         </div>
     );
 };

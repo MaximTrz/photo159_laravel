@@ -8,8 +8,17 @@ import Prices from "../../pages/prices";
 import Photos from "../photos";
 
 import "./style.scss";
+import usePhotos from "../../hooks/usePhotos";
 
 const Layout: React.FC = () => {
+    const { photosList } = usePhotos();
+
+    const layoutPhotos =
+        photosList.length > 0 ? (
+            <div className="layout__photos">
+                <Photos />
+            </div>
+        ) : null;
     return (
         <div className="layout">
             <header className="layout__header">
@@ -19,9 +28,7 @@ const Layout: React.FC = () => {
                 <Header />
             </header>
             <main className="layout__main">
-                <div className="layout__photos">
-                    <Photos />
-                </div>
+                {layoutPhotos}
                 <div className="layout__content">
                     <Routes>
                         <Route path="/" element={<Prices />} />

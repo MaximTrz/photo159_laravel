@@ -154,6 +154,15 @@ const toolkitSlice = createSlice({
                 photoToUpdate.margin_id = payload.marginId;
             }
         },
+        deletePhoto: (state, { payload }: { payload: { id: number } }) => {
+            const newPhotos = state.photos.filter(
+                (photo) => photo.id !== payload.id,
+            );
+            state.photos = newPhotos;
+        },
+        deleteAll: (state) => {
+            state.photos = [];
+        },
     },
 });
 
@@ -169,4 +178,6 @@ export const {
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,
+    deleteAll,
+    deletePhoto,
 } = toolkitSlice.actions;

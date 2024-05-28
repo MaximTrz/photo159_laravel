@@ -5,6 +5,7 @@ import {
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,
+    deletePhoto,
 } from "../../store/Reducer";
 
 import findPrice from "../../utils/findPrice";
@@ -51,11 +52,16 @@ const usePhtotoItem = () => {
         [],
     );
 
+    const deletePhtotoById = (id: number) => {
+        dispatch(deletePhoto({ id }));
+    };
+
     return {
         getPrice,
         setMaterial,
         setSize,
         setMargin,
+        deletePhtotoById,
     };
 };
 

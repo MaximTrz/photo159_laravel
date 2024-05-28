@@ -1,5 +1,5 @@
 import * as React from "react";
-import usePhotos from "./usePhotos";
+import usePhotos from "../../hooks/usePhotos";
 import PhotosList from "../photos-list";
 import ApplyAll from "../apply-all";
 import DeleteAll from "../delete-all";

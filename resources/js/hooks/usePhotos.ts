@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import ToolKitStateType from "../../types/ToolKitStateType";
+import ToolKitStateType from "../types/ToolKitStateType";
 
 const usePhotos = () => {
     const photosList = useSelector(
