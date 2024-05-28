@@ -15,9 +15,9 @@ import "./style.scss";
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
 
-    const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
-    const { getPrice, setMaterial, setSize, setMargin, deletePhtotoById } =
-        usePhtotoItem();
+    const { sizesForSelect, materials, margins, prices, setMaterial } =
+        usePhotoProperties();
+    const { getPrice, setSize, setMargin, deletePhtotoById } = usePhtotoItem();
 
     const filteredSizes = sizesForSelect.filter((size) => {
         const price = prices.find(
@@ -41,7 +41,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     };
 
     const handleSelectMaterial = (selectedId: number) => {
-        setMaterial(photo.id, selectedId);
+        setMaterial(photo, selectedId);
     };
 
     const handleSelectSize = (selectedId: number) => {
