@@ -15,9 +15,16 @@ import "./style.scss";
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
 
-    const { sizesForSelect, materials, margins, prices, setMaterial } =
-        usePhotoProperties();
-    const { getPrice, setSize, setMargin, deletePhtotoById } = usePhtotoItem();
+    const {
+        sizesForSelect,
+        materials,
+        margins,
+        prices,
+        setMaterial,
+        setSize,
+        findPriceByIDs,
+    } = usePhotoProperties();
+    const { setMargin, deletePhtotoById } = usePhtotoItem();
 
     const filteredSizes = sizesForSelect.filter((size) => {
         const price = prices.find(
@@ -45,7 +52,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     };
 
     const handleSelectSize = (selectedId: number) => {
-        setSize(photo.id, selectedId);
+        setSize(photo, selectedId);
     };
 
     const handleSelectMargin = (selectedId: number) => {
@@ -96,8 +103,9 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             <div className="photo-item__sum">
                 Цена:{" "}
                 <span className="photo-item__sum-digit">
-                    {Number(getPrice(photo.size_id, photo.material_id)) *
-                        photo.amount}
+                    {Number(
+                        findPriceByIDs(photo.material_id, photo.size_id)?.price,
+                    ) * photo.amount}
                 </span>{" "}
                 ₽
             </div>

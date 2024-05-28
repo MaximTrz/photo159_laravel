@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
 
@@ -28,60 +30,94 @@ const usePhotoProperties = () => {
         (state: ToolKitStateType) => state.toolkitSlice.prices,
     );
 
-    const findPriceByIDs = (materialID: number, sizeID: number) => {
-        const result = prices.find(
-            (price) =>
-                price.material_id === materialID && price.size_id === sizeID,
-        );
-        return result;
-    };
-
-    const findMaterialById = (id: number) => {
-        const materials = useSelector(
-            (state: ToolKitStateType) => state.toolkitSlice.materials,
-        );
-        const result = materials.find((material) => material.id === id);
-        return result;
-    };
-
-    const findSizeById = (id: number) => {
-        const sizes = useSelector(
-            (state: ToolKitStateType) => state.toolkitSlice.sizes,
-        );
-        const result = sizes.find((size) => size.id === id);
-        return result;
-    };
-
-    const setMaterial = (photo: PhotoType, materialID: number) => {
-        const price = findPriceByIDs(materialID, photo.size_id);
-
-        if (price) {
-            dispatch(
-                setPhotoMaterial({ id: photo.id, materialId: materialID }),
+    const findPriceByIDs = React.useCallback(
+        (materialID: number, sizeID: number) => {
+            const result = prices.find(
+                (price) =>
+                    price.material_id === materialID &&
+                    price.size_id === sizeID,
             );
-        } else {
-            const correctPrice = prices.find((price) => {
-                return price.material_id === materialID;
-            });
+            return result;
+        },
+        [prices],
+    );
 
-            if (correctPrice) {
+    const setMaterial = React.useCallback(
+        (photo: PhotoType, materialID: number) => {
+            const price = findPriceByIDs(materialID, photo.size_id);
+
+            if (price) {
                 dispatch(
-                    setPhotoMaterial({
-                        id: photo.id,
-                        materialId: correctPrice.material_id,
-                    }),
+                    setPhotoMaterial({ id: photo.id, materialId: materialID }),
                 );
+            } else {
+                const correctPrice = prices.find((price) => {
+                    return price.material_id === materialID;
+                });
+
+                if (correctPrice) {
+                    dispatch(
+                        setPhotoMaterial({
+                            id: photo.id,
+                            materialId: correctPrice.material_id,
+                        }),
+                    );
+                    dispatch(
+                        setPhotoSize({
+                            id: photo.id,
+                            sizeId: correctPrice.size_id,
+                        }),
+                    );
+                }
+            }
+        },
+        [dispatch, findPriceByIDs, prices],
+    );
+
+    const setSize = React.useCallback(
+        (photo: PhotoType, sizeID: number) => {
+            const price = findPriceByIDs(photo.material_id, sizeID);
+
+            if (price) {
                 dispatch(
                     setPhotoSize({
                         id: photo.id,
-                        sizeId: correctPrice.size_id,
+                        sizeId: sizeID,
                     }),
                 );
-            }
-        }
-    };
+            } else {
+                const correctPrice = prices.find((price) => {
+                    return price.size_id === sizeID;
+                });
 
-    return { materials, sizesForSelect, margins, prices, setMaterial };
+                if (correctPrice) {
+                    dispatch(
+                        setPhotoMaterial({
+                            id: photo.id,
+                            materialId: correctPrice.material_id,
+                        }),
+                    );
+                    dispatch(
+                        setPhotoSize({
+                            id: photo.id,
+                            sizeId: correctPrice.size_id,
+                        }),
+                    );
+                }
+            }
+        },
+        [dispatch, findPriceByIDs, prices],
+    );
+
+    return {
+        materials,
+        sizesForSelect,
+        margins,
+        prices,
+        setMaterial,
+        setSize,
+        findPriceByIDs,
+    };
 };
 
 export default usePhotoProperties;
