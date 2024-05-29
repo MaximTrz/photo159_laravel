@@ -1,5 +1,6 @@
 import * as React from "react";
 import usePhotos from "../../hooks/usePhotos";
+import usePhotoProperties from "../../hooks/usePhotoProperties";
 import PhotosList from "../photos-list";
 import ApplyAll from "../apply-all";
 import DeleteAll from "../delete-all";
@@ -9,14 +10,18 @@ import "./style.scss";
 
 const Photos: React.FC = () => {
     const { photosList } = usePhotos();
+    const { totalPhotosCount, totalSum } = usePhotoProperties();
+
     return (
         <div className="photos">
             <div className="photos__header">
                 <div className="photos__header-text">
                     <div className="photos__header-count">
-                        Количество фотографий: 1шт.
+                        Количество фотографий: {totalPhotosCount} шт.
                     </div>
-                    <div className="photos__header-sum">Сумма: 10 ₽</div>
+                    <div className="photos__header-sum">
+                        Сумма: {totalSum} ₽
+                    </div>
                 </div>
                 <div className="photos__header-buttons">
                     <div className="photos__header-delete-button">
