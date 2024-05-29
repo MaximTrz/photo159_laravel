@@ -23,10 +23,12 @@ const usePhotoProperties = () => {
         (state: ToolKitStateType) => state.toolkitSlice.sizes,
     );
 
-    const sizesForSelect = sizes.map((size) => ({
-        ...size,
-        name: `${size.width} X ${size.height} (${size.comment})`,
-    }));
+    const sizesForSelect = useMemo(() => {
+        return sizes.map((size) => ({
+            ...size,
+            name: `${size.width} X ${size.height} (${size.comment})`,
+        }));
+    }, [sizes]);
 
     const materials = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.materials,
