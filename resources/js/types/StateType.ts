@@ -10,4 +10,5 @@ export default interface StateType {
     sizes: SizeType[];
     photos: PhotoType[];
     margins: OptionslType[];
+    lastID: number;
 }

@@ -12,6 +12,7 @@ const initialState: StateType = {
     materials: [],
     sizes: [],
     margins: [],
+    lastID: 5,
     photos: [
         {
             id: 1,
