@@ -82,7 +82,7 @@ const usePhotoProperties = () => {
                 }
             }
         },
-        [dispatch, findPriceByIDs, prices],
+        [findPriceByIDs, prices],
     );
 
     const setSize = React.useCallback(
@@ -117,7 +117,7 @@ const usePhotoProperties = () => {
                 }
             }
         },
-        [dispatch, findPriceByIDs, prices],
+        [findPriceByIDs, prices],
     );
     const setMargin = React.useCallback(
         (photoId: number, margin_id: number) => {
