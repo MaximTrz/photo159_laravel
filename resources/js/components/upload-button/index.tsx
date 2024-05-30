@@ -1,19 +1,28 @@
 import * as React from "react";
+import { useCallback } from "react";
 import { useRef } from "react";
 
 import "./style.scss";
+import useUploadButton from "./useUploadButton";
 
 const UploadButton: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const handleButtonClick = () => {
+
+    const handleButtonClick = useCallback(() => {
         fileInputRef.current?.click();
-    };
+    }, []);
+
+    const { addImages } = useUploadButton();
+
     return (
         <>
             <input
                 ref={fileInputRef}
                 type="file"
-                onChange={() => {}}
+                multiple
+                onChange={(event) => {
+                    addImages(event);
+                }}
                 style={{ display: "none" }}
             />
             <button

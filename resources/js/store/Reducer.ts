@@ -4,7 +4,6 @@ import StateType from "../types/StateType";
 import PriceType from "../types/PriceType";
 import MaterialType from "../types/MaterialType";
 import SizeType from "../types/SizeType";
-import PhotoType from "../types/PhotoType";
 import OptionsType from "../types/OptionsType";
 
 const initialState: StateType = {
@@ -12,49 +11,8 @@ const initialState: StateType = {
     materials: [],
     sizes: [],
     margins: [],
-    lastID: 5,
-    photos: [
-        {
-            id: 1,
-            size_id: 2,
-            material_id: 1,
-            amount: 1,
-            image: "1.jpg",
-            margin_id: 1,
-        },
-        {
-            id: 2,
-            size_id: 2,
-            material_id: 1,
-            amount: 1,
-            margin_id: 1,
-            image: "1.jpg",
-        },
-        {
-            id: 3,
-            size_id: 2,
-            material_id: 1,
-            amount: 1,
-            margin_id: 1,
-            image: "1.jpg",
-        },
-        {
-            id: 4,
-            size_id: 2,
-            material_id: 1,
-            amount: 1,
-            margin_id: 1,
-            image: "1.jpg",
-        },
-        {
-            id: 5,
-            size_id: 2,
-            material_id: 1,
-            amount: 1,
-            margin_id: 1,
-            image: "1.jpg",
-        },
-    ],
+    lastID: 0,
+    photos: [],
 };
 
 const toolkitSlice = createSlice({
@@ -73,8 +31,19 @@ const toolkitSlice = createSlice({
         setMargins: (state, { payload }: { payload: OptionsType[] }) => {
             state.margins = payload;
         },
-        addPhoto: (state, { payload }: { payload: PhotoType }) => {
-            state.photos.push(payload);
+        addPhoto: (state, { payload }: { payload }) => {
+            const newID = state.lastID + 1;
+            state.lastID++;
+            console.log(newID);
+            const newPhoto = {
+                id: newID,
+                size_id: 4,
+                material_id: 1,
+                amount: 1,
+                margin_id: 1,
+                image: payload,
+            };
+            state.photos.push(newPhoto);
         },
         setAmount: (
             state,

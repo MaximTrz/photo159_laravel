@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAmount } from "../../store/Reducer";
@@ -27,45 +28,56 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     } = usePhotoProperties();
     const { deletePhtotoById } = usePhtotoItem();
 
-    const filteredSizes = sizesForSelect.filter((size) => {
-        const price = prices.find(
-            (price) =>
-                price.size_id === size.id &&
-                price.material_id === photo.material_id,
-        );
-        if (price) {
-            return size;
-        }
-    });
+    const filteredSizes = useMemo(() => {
+        return sizesForSelect.filter((size) => {
+            const price = prices.find(
+                (price) =>
+                    price.size_id === size.id &&
+                    price.material_id === photo.material_id,
+            );
+            if (price) {
+                return size;
+            }
+        });
+    }, [sizesForSelect, prices, photo.material_id]);
 
-    const handleClickPlusAmount = () => {
+    const handleClickPlusAmount = useCallback(() => {
         const newValue = photo.amount + 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    };
+    }, [dispatch, photo]);
 
-    const handleClickMinusAmount = () => {
+    const handleClickMinusAmount = useCallback(() => {
         const newValue = photo.amount - 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    };
+    }, [dispatch, photo]);
 
-    const handleSelectMaterial = (selectedId: number) => {
-        setMaterial(photo, selectedId);
-    };
+    const handleSelectMaterial = useCallback(
+        (selectedId: number) => {
+            setMaterial(photo, selectedId);
+        },
+        [photo, setMaterial],
+    );
 
-    const handleSelectSize = (selectedId: number) => {
-        setSize(photo, selectedId);
-    };
+    const handleSelectSize = useCallback(
+        (selectedId: number) => {
+            setSize(photo, selectedId);
+        },
+        [photo, setSize],
+    );
 
-    const handleSelectMargin = (selectedId: number) => {
-        setMargin(photo.id, selectedId);
-    };
+    const handleSelectMargin = useCallback(
+        (selectedId: number) => {
+            setMargin(photo.id, selectedId);
+        },
+        [photo, setMargin],
+    );
 
     return (
         <div className="photo-item">
             <div
                 className="photo-item__image"
                 style={{
-                    backgroundImage: `url(images/${photo.image})`,
+                    backgroundImage: `url(${photo.image})`,
                 }}
             ></div>
 
