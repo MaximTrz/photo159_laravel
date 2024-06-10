@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\MarginResource;
 use App\MoonShine\Resources\MaterialResource;
 use App\MoonShine\Resources\MaterialTypeResource;
 use App\MoonShine\Resources\PriceResource;
@@ -56,6 +57,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuGroup::make('Материалы', [
                 MenuItem::make('Материалы', new MaterialResource()),
                 MenuItem::make('Типы материалов', new MaterialTypeResource())
+            ]),
+
+            MenuGroup::make('Поля', [
+                MenuItem::make('Поля', new MarginResource()),
             ]),
 
         ];

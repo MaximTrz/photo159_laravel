@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Margin;
 use App\Models\Material;
 use App\Models\Price;
 use App\Models\Size;
@@ -26,11 +27,12 @@ class Prices extends Controller
 
         $materials = Material::orderBy('sort_order')->get();
 
-
+        $margins = Margin::all();
 
         $res = ["prices"=>$prices,
                 "sizes"=>$sizes,
-                "materials" => $materials,];
+                "materials" => $materials,
+                "margins" => $margins];
 
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 

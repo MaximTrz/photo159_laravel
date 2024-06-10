@@ -24,12 +24,11 @@ const App = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const priceData = await apiService.getPrices();
                 const serverPriceData = await apiService.getPricesFormServer();
                 dispatch(setMaterials(serverPriceData.materials));
                 dispatch(setSizes(serverPriceData.sizes));
                 dispatch(setPrices(serverPriceData.prices));
-                dispatch(setMargins(priceData.margins));
+                dispatch(setMargins(serverPriceData.margins));
             } catch (error) {
                 console.error("Error fetching price data:", error);
             }
