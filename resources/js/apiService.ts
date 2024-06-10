@@ -1,8 +1,18 @@
 import PriceType from "./types/PriceType";
 import SizeType from "./types/SizeType";
 import MaterialType from "./types/MaterialType";
+import axios from "axios";
 
 export default class ApiService {
+    async getPricesFormServer() {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/price");
+            return response.data;
+        } catch (error) {
+            throw new Error("Failed to fetch price data");
+        }
+    }
+
     getPrices(): {
         prices: PriceType[];
         sizes: SizeType[];

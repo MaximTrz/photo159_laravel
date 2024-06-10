@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider, useDispatch } from "react-redux";
 import Context from "./context";
@@ -21,12 +21,22 @@ const App = () => {
     const { apiService } = useContext(Context);
     const dispatch = useDispatch();
 
-    const priceData = apiService.getPrices();
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const priceData = await apiService.getPrices();
+                const serverPriceData = await apiService.getPricesFormServer();
+                dispatch(setMaterials(serverPriceData.materials));
+                dispatch(setSizes(serverPriceData.sizes));
+                dispatch(setPrices(serverPriceData.prices));
+                dispatch(setMargins(priceData.margins));
+            } catch (error) {
+                console.error("Error fetching price data:", error);
+            }
+        };
 
-    dispatch(setMaterials(priceData.materials));
-    dispatch(setSizes(priceData.sizes));
-    dispatch(setPrices(priceData.prices));
-    dispatch(setMargins(priceData.margins));
+        fetchData();
+    }, [apiService, dispatch]);
 
     return <Router />;
 };
