@@ -13,6 +13,12 @@ const initialState: StateType = {
     margins: [],
     lastID: 0,
     photos: [],
+    aplyAll: {
+        size_id: 4,
+        material_id: 1,
+        amount: 1,
+        margin_id: 1,
+    },
 };
 
 const toolkitSlice = createSlice({
@@ -98,6 +104,58 @@ const toolkitSlice = createSlice({
             );
             state.photos = newPhotos;
         },
+        setApplyAllSize: (
+            state,
+            { payload }: { payload: { sizeId: number } },
+        ) => {
+            const isValidSize = state.sizes.some(
+                (size) => size.id === payload.sizeId,
+            );
+            if (isValidSize) {
+                state.aplyAll.size_id = payload.sizeId;
+            }
+        },
+        setApplyAllMaterial: (
+            state,
+            { payload }: { payload: { matetialId: number } },
+        ) => {
+            state.aplyAll.material_id = payload.matetialId;
+        },
+        setApplyAllMargin: (
+            state,
+            { payload }: { payload: { marginId: number } },
+        ) => {
+            state.aplyAll.margin_id = payload.marginId;
+        },
+        setApplyAllAmount: (
+            state,
+            { payload }: { payload: { amount: number } },
+        ) => {
+            state.aplyAll.amount = payload.amount;
+        },
+
+        applyAll: (
+            state,
+            {
+                payload,
+            }: {
+                payload: {
+                    size_id: number;
+                    material_id: number;
+                    amount: number;
+                    margin_id: number;
+                };
+            },
+        ) => {
+            const { size_id, material_id, amount, margin_id } = payload;
+            state.photos.map((photo) => ({
+                ...photo,
+                size_id,
+                material_id,
+                amount,
+                margin_id,
+            }));
+        },
         deleteAll: (state) => {
             state.photos = [];
         },
@@ -117,5 +175,6 @@ export const {
     setPhotoSize,
     setPhotoMargin,
     deleteAll,
+    applyAll,
     deletePhoto,
 } = toolkitSlice.actions;
