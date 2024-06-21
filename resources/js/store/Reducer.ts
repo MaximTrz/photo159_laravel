@@ -136,6 +136,7 @@ const toolkitSlice = createSlice({
 
         applyAll: (state) => {
             const { size_id, material_id, amount, margin_id } = state.aplyAll;
+
             return {
                 ...state,
                 photos: state.photos.map((photo) => ({
