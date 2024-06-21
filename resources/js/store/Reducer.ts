@@ -134,28 +134,20 @@ const toolkitSlice = createSlice({
             state.aplyAll.amount = payload.amount;
         },
 
-        applyAll: (
-            state,
-            {
-                payload,
-            }: {
-                payload: {
-                    size_id: number;
-                    material_id: number;
-                    amount: number;
-                    margin_id: number;
-                };
-            },
-        ) => {
-            const { size_id, material_id, amount, margin_id } = payload;
-            state.photos.map((photo) => ({
-                ...photo,
-                size_id,
-                material_id,
-                amount,
-                margin_id,
-            }));
+        applyAll: (state) => {
+            const { size_id, material_id, amount, margin_id } = state.aplyAll;
+            return {
+                ...state,
+                photos: state.photos.map((photo) => ({
+                    ...photo,
+                    size_id,
+                    material_id,
+                    amount,
+                    margin_id,
+                })),
+            };
         },
+
         deleteAll: (state) => {
             state.photos = [];
         },
@@ -176,5 +168,8 @@ export const {
     setPhotoMargin,
     deleteAll,
     applyAll,
+    setApplyAllMaterial,
+    setApplyAllSize,
+    setApplyAllMargin,
     deletePhoto,
 } = toolkitSlice.actions;
