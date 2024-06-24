@@ -1,11 +1,14 @@
-import { useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useCallback, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import usePhotoProperties from "../../hooks/usePhotoProperties";
 
 import ToolKitStateType from "../../types/ToolKitStateType";
 import {
     setApplyAllMaterial,
     setApplyAllSize,
+    setApplyAllAmount,
+    setApplyAllMargin,
     applyAll,
 } from "../../store/Reducer";
 
@@ -14,28 +17,62 @@ const useApplyAll = () => {
     const applyAllValues = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.aplyAll,
     );
+    const { sizesForSelect, prices } = usePhotoProperties();
 
-    const setMaterial = useCallback(
-        (materialID: number) => {
-            dispatch(setApplyAllMaterial({ matetialId: materialID }));
+    const filteredSizes = useMemo(() => {
+        return sizesForSelect.filter((size) => {
+            const price = prices.find(
+                (price) =>
+                    price.size_id === size.id &&
+                    price.material_id === applyAllValues.material_id,
+            );
+            if (price) {
+                return size;
+            }
+        });
+    }, [sizesForSelect, prices, applyAllValues.material_id]);
+
+    const setMaterial = useCallback((materialID: number) => {
+        dispatch(setApplyAllMaterial({ matetialId: materialID }));
+    }, []);
+
+    const setSize = useCallback((sizeID: number) => {
+        dispatch(
+            setApplyAllSize({
+                sizeId: sizeID,
+            }),
+        );
+    }, []);
+
+    const setAmount = useCallback(
+        (value) => {
+            dispatch(setApplyAllAmount({ amount: value }));
         },
-        [dispatch],
+        [applyAllValues],
     );
 
-    const setSize = useCallback(
-        (sizeID: number) => {
+    const setMargin = useCallback(
+        (marginID: number) => {
             dispatch(
-                setApplyAllSize({
-                    sizeId: sizeID,
+                setApplyAllMargin({
+                    marginId: marginID,
                 }),
             );
         },
-        [dispatch],
+        [applyAllValues],
     );
 
     const apply = () => dispatch(applyAll());
 
-    return { applyAllValues, setMaterial, setSize, apply };
+    return {
+        applyAllValues,
+        setMaterial,
+        setSize,
+        setAmount,
+        setMargin,
+        apply,
+        filteredSizes,
+    };
 };
 
 export default useApplyAll;

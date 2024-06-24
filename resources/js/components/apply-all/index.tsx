@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useCallback } from "react";
-import { useMemo } from "react";
+import { useCallback, useEffect } from "react";
 import Select from "../select-item";
 import Counter from "../counter";
 import useApplyAll from "./useApplyAll";
@@ -9,21 +8,22 @@ import usePhotoProperties from "../../hooks/usePhotoProperties";
 import "./style.scss";
 
 const ApplyAll: React.FC = () => {
-    const { sizesForSelect, materials, margins, prices } = usePhotoProperties();
-    const { applyAllValues, setMaterial, setSize, apply } = useApplyAll();
+    const { materials, margins } = usePhotoProperties();
+    const {
+        filteredSizes,
+        applyAllValues,
+        setMaterial,
+        setSize,
+        setAmount,
+        setMargin,
+        apply,
+    } = useApplyAll();
 
-    const filteredSizes = useMemo(() => {
-        return sizesForSelect.filter((size) => {
-            const price = prices.find(
-                (price) =>
-                    price.size_id === size.id &&
-                    price.material_id === applyAllValues.material_id,
-            );
-            if (price) {
-                return size;
-            }
-        });
-    }, [sizesForSelect, prices, applyAllValues.material_id]);
+    useEffect(() => {
+        if (filteredSizes.length > 0) {
+            setSize(filteredSizes[0].id);
+        }
+    }, [filteredSizes]);
 
     const handleSelectMaterial = useCallback(
         (selectedId: number) => {
@@ -38,6 +38,23 @@ const ApplyAll: React.FC = () => {
         },
         [setSize],
     );
+
+    const handleSelectMargin = useCallback(
+        (selectedId: number) => {
+            setMargin(selectedId);
+        },
+        [setMargin],
+    );
+
+    const handleClickPlusAmount = useCallback(() => {
+        const newValue = applyAllValues.amount + 1;
+        setAmount(newValue);
+    }, [applyAllValues]);
+
+    const handleClickMinusAmount = useCallback(() => {
+        const newValue = applyAllValues.amount - 1;
+        setAmount(newValue);
+    }, [applyAllValues]);
 
     return (
         <div className="apply-all">
@@ -68,13 +85,21 @@ const ApplyAll: React.FC = () => {
             <div className="apply-all__input-item --mb10">
                 <div className="apply-all__input-title">Кол-во:</div>
                 <div className="apply-all__input">
-                    <Counter amount={1} />
+                    <Counter
+                        amount={applyAllValues.amount}
+                        inc={handleClickPlusAmount}
+                        dec={handleClickMinusAmount}
+                    />
                 </div>
             </div>
             <div className="apply-all__input-item --mb20">
                 <div className="apply-all__input-title">Поля:</div>
                 <div className="apply-all__input">
-                    <Select options={margins} />
+                    <Select
+                        options={margins}
+                        handleSelect={handleSelectMargin}
+                        selected={applyAllValues.margin_id}
+                    />
                 </div>
             </div>
             <button

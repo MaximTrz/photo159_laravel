@@ -44,12 +44,12 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const handleClickPlusAmount = useCallback(() => {
         const newValue = photo.amount + 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [dispatch, photo]);
+    }, [photo]);
 
     const handleClickMinusAmount = useCallback(() => {
         const newValue = photo.amount - 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [dispatch, photo]);
+    }, [photo]);
 
     const handleSelectMaterial = useCallback(
         (selectedId: number) => {

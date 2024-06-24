@@ -131,7 +131,9 @@ const toolkitSlice = createSlice({
             state,
             { payload }: { payload: { amount: number } },
         ) => {
-            state.aplyAll.amount = payload.amount;
+            if (payload.amount > 0) {
+                state.aplyAll.amount = payload.amount;
+            }
         },
 
         applyAll: (state) => {
@@ -171,6 +173,7 @@ export const {
     applyAll,
     setApplyAllMaterial,
     setApplyAllSize,
+    setApplyAllAmount,
     setApplyAllMargin,
     deletePhoto,
 } = toolkitSlice.actions;
