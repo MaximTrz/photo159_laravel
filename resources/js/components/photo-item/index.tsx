@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { setAmount } from "../../store/Reducer";
@@ -40,6 +40,12 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
             }
         });
     }, [sizesForSelect, prices, photo.material_id]);
+
+    useEffect(() => {
+        if (filteredSizes.length > 0) {
+            setSize(photo, filteredSizes[0].id);
+        }
+    }, [filteredSizes]);
 
     const handleClickPlusAmount = useCallback(() => {
         const newValue = photo.amount + 1;
