@@ -21,21 +21,23 @@ const App = () => {
     const { apiService } = useContext(Context);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const serverPriceData = await apiService.getPricesFormServer();
+    const fetchData = () => {
+        apiService
+            .getPricesFormServer()
+            .then((serverPriceData) => {
                 dispatch(setMaterials(serverPriceData.materials));
                 dispatch(setSizes(serverPriceData.sizes));
                 dispatch(setPrices(serverPriceData.prices));
                 dispatch(setMargins(serverPriceData.margins));
-            } catch (error) {
+            })
+            .catch((error) => {
                 console.error("Error fetching price data:", error);
-            }
-        };
+            });
+    };
 
+    useEffect(() => {
         fetchData();
-    }, [apiService, dispatch]);
+    }, []);
 
     return <Router />;
 };

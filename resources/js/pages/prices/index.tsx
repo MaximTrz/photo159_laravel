@@ -16,14 +16,14 @@ const Prices: React.FC = () => {
         <>
             <PriceTable
                 title="Цены на печать фотографий (руб.)"
-                sizes={baseSizes}
-                materials={baseMaterials}
+                sizes={baseSizes()}
+                materials={baseMaterials()}
                 prices={prices}
             />
             <PriceTable
                 title="Цены на печать сувениров (руб.)"
-                sizes={souvenirSizes}
-                materials={souvenirMaterials}
+                sizes={souvenirSizes()}
+                materials={souvenirMaterials()}
                 prices={prices}
             />
         </>

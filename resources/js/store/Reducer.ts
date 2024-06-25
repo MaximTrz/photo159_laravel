@@ -37,6 +37,7 @@ const toolkitSlice = createSlice({
         setMargins: (state, { payload }: { payload: OptionsType[] }) => {
             state.margins = payload;
         },
+
         addPhoto: (state, { payload }: { payload }) => {
             const newID = state.lastID + 1;
             state.lastID++;
