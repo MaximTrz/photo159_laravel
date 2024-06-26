@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import ToolKitStateType from "../../types/ToolKitStateType";
 
@@ -13,22 +13,22 @@ const usePrices = () => {
         (state: ToolKitStateType) => state.toolkitSlice.prices,
     );
 
-    const baseSizes = useCallback(
+    const baseSizes = useMemo(
         () => sizes.filter((size) => size.size_type_id === 1),
         [sizes],
     );
 
-    const souvenirSizes = useCallback(
+    const souvenirSizes = useMemo(
         () => sizes.filter((size) => size.size_type_id === 2),
         [sizes],
     );
 
-    const baseMaterials = useCallback(
+    const baseMaterials = useMemo(
         () => materials.filter((material) => material.material_type_id === 1),
         [materials],
     );
 
-    const souvenirMaterials = useCallback(
+    const souvenirMaterials = useMemo(
         () => materials.filter((material) => material.material_type_id === 2),
         [materials],
     );

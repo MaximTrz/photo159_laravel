@@ -1,53 +1,50 @@
 import * as React from "react";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Provider, useDispatch } from "react-redux";
-import Context from "./context";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import Router from "./router";
+import { fetchPriceData } from "./store/thunks";
 import { store } from "./store";
-
-import ApiService from "./apiService";
 
 import "./bootstrap";
 import "normalize.css";
 import "./style/app.scss";
-import { setMargins, setMaterials, setPrices, setSizes } from "./store/Reducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const contextValue = { apiService: new ApiService() };
 
 const App = () => {
-    const { apiService } = useContext(Context);
     const dispatch = useDispatch();
-
-    const fetchData = () => {
-        apiService
-            .getPricesFormServer()
-            .then((serverPriceData) => {
-                dispatch(setMaterials(serverPriceData.materials));
-                dispatch(setSizes(serverPriceData.sizes));
-                dispatch(setPrices(serverPriceData.prices));
-                dispatch(setMargins(serverPriceData.margins));
-            })
-            .catch((error) => {
-                console.error("Error fetching price data:", error);
-            });
-    };
+    const loaded = useSelector((state) => state.toolkitSlice.loaded);
 
     useEffect(() => {
-        fetchData();
+        dispatch(fetchPriceData());
     }, []);
 
-    return <Router />;
+    return (
+        <>
+            {!loaded ? (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100vh",
+                    }}
+                >
+                    <CircularProgress />
+                </Box>
+            ) : (
+                <Router />
+            )}
+        </>
+    );
 };
 
 root.render(
     <Provider store={store}>
-        <React.StrictMode>
-            <Context.Provider value={contextValue}>
-                <App />
-            </Context.Provider>
-        </React.StrictMode>
+        <App />
     </Provider>,
 );

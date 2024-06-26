@@ -2,10 +2,12 @@
 @import "../../style/_mixins.scss";
 
 .select-item {
+    display: block;
     &__select {
         max-width: 100%;
         padding: 3px;
         border: 1px solid $base-blue;
         background-color: rgba(0, 0, 0, 0);
+        width: 100%;
     }
 }

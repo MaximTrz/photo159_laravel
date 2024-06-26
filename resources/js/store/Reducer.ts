@@ -19,6 +19,7 @@ const initialState: StateType = {
         amount: 1,
         margin_id: 1,
     },
+    loaded: false,
 };
 
 const toolkitSlice = createSlice({
@@ -37,11 +38,13 @@ const toolkitSlice = createSlice({
         setMargins: (state, { payload }: { payload: OptionsType[] }) => {
             state.margins = payload;
         },
+        setLoaded: (state, { payload }: { payload: boolean }) => {
+            state.loaded = payload;
+        },
 
         addPhoto: (state, { payload }: { payload }) => {
             const newID = state.lastID + 1;
             state.lastID++;
-            console.log(newID);
             const newPhoto = {
                 id: newID,
                 size_id: 4,
@@ -167,6 +170,7 @@ export const {
     addPhoto,
     setMargins,
     setAmount,
+    setLoaded,
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,

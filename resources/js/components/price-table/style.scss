@@ -1,6 +1,9 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
 .price-table {
     display: block;
     padding: 15px;
+
     &__title {
         color: red;
         font-size: 24px;
@@ -8,10 +11,16 @@
         margin-top: 0;
         font-weight: 800;
         padding: 15px 0 25px 0;
+        @include phone {
+            font-size: 18px;
+        }
     }
     &__size {
         padding: 0 5px 1px 5px;
         font-size: 18px;
         font-weight: 600;
+        @include phone {
+            font-size: 14px;
+        }
     }
 }

@@ -17,4 +17,5 @@ export default interface StateType {
         amount: number;
         margin_id: number;
     };
+    loaded: boolean;
 }
