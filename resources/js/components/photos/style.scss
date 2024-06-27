@@ -51,6 +51,7 @@
     &__header-buttons {
         display: flex;
         flex-basis: 600px;
+        justify-content: space-between;
         @include small-desktop {
             flex-basis: 100%;
             align-items: start;
