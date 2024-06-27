@@ -43,14 +43,14 @@ const Photos: React.FC = () => {
                 </div>
             </div>
 
-            <div className="photos__footer">
+            {/* <div className="photos__footer">
                 <div className="photos__header-delete-button">
                     <DeleteAll />
                 </div>
                 <div className="photos__header-checkout-button">
                     <CheckoutButton />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

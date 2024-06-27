@@ -6,6 +6,9 @@
         font-size: 18px;
         font-weight: 600;
         padding-right: 20px;
+        @include small-desktop {
+            font-size: 16px;
+        }
         @include phone {
             font-size: 14px;
         }
