@@ -3,6 +3,7 @@
 
 .checkout-button {
     font-family: $second-font-family;
+    white-space: nowrap;
     clip-path: polygon(93% 0, 100% 50%, 93% 100%, 0% 100%, 0 45%, 0% 0%);
     display: block;
     width: 100%;
