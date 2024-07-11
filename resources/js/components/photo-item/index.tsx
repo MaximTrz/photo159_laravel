@@ -72,6 +72,19 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
         [photo, setMargin],
     );
 
+    const totalPrice = useMemo(() => {
+        return (
+            Number(findPriceByIDs(photo.material_id, photo.size_id)?.price) *
+            photo.amount
+        );
+    }, [
+        photo.material_id,
+        photo.size_id,
+        photo.amount,
+        findPriceByIDs,
+        filteredSizes,
+    ]);
+
     return (
         <div className="photo-item">
             <div
@@ -102,16 +115,6 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                         />
                     </div>
                 </div>
-                <div className="photo-item__select">
-                    <div className="photo-item__select-title">Размер:</div>
-                    <div className="photo-item__select-item">
-                        <Select
-                            options={filteredSizes}
-                            selected={photo.size_id}
-                            handleSelect={handleSelectSize}
-                        />
-                    </div>
-                </div>
                 <div className="photo-item__select --mb10">
                     <div className="photo-item__select-title">Кол-во:</div>
                     <div className="photo-item__select-item">
@@ -124,12 +127,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 </div>
                 <div className="photo-item__sum">
                     Цена:{" "}
-                    <span className="photo-item__sum-digit">
-                        {Number(
-                            findPriceByIDs(photo.material_id, photo.size_id)
-                                ?.price,
-                        ) * photo.amount}
-                    </span>{" "}
+                    <span className="photo-item__sum-digit">{totalPrice}</span>{" "}
                     ₽
                 </div>
                 <div className="photo-item__select --mb10">

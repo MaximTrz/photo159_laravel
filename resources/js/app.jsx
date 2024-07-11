@@ -2,12 +2,17 @@ import * as React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import Router from "./router";
 import { fetchPriceData } from "./store/thunks";
 import { store } from "./store";
+
+import usePhotos from "./hooks/usePhotos";
+
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import PreloadDialog from "./components/preload-dialog";
+import UploadDialog from "./components/upload-dialog";
 
 import "./bootstrap";
 import "normalize.css";
@@ -18,6 +23,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const App = () => {
     const dispatch = useDispatch();
     const loaded = useSelector((state) => state.toolkitSlice.loaded);
+    const { uploading, photosList } = usePhotos();
+
+    const uploadingPercent =
+        photosList.length > 0
+            ? (uploading.uploaded / photosList.length) * 100
+            : 0;
 
     useEffect(() => {
         dispatch(fetchPriceData());
@@ -37,7 +48,11 @@ const App = () => {
                     <CircularProgress />
                 </Box>
             ) : (
-                <Router />
+                <>
+                    <UploadDialog value={uploadingPercent} />
+                    <PreloadDialog />
+                    <Router />
+                </>
             )}
         </>
     );

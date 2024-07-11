@@ -4,13 +4,101 @@ import MaterialType from "./types/MaterialType";
 import axios from "axios";
 
 export default class ApiService {
+    baseUrl = "http://127.0.0.1:8000";
+
     async getPricesFormServer() {
         try {
-            const response = await axios.get("http://127.0.0.1:8000/api/price");
+            const response = await axios.get(`${this.baseUrl}/api/price`);
             return response.data;
         } catch (error) {
             throw new Error("Failed to fetch price data");
         }
+    }
+
+    async uploadPhoto(photoData) {
+        try {
+            const response = await axios.post(
+                `${this.baseUrl}/api/photo`,
+                photoData,
+            );
+            return response.data;
+        } catch (error) {
+            throw new Error("Failed to save photo");
+        }
+    }
+
+    async savePhoto(photoData, order_id, lastPhoto) {
+        console.log(photoData);
+        try {
+            const formData = new FormData();
+
+            formData.append("size_id", photoData.size_id);
+            formData.append("material_id", photoData.material_id);
+            formData.append("amount", photoData.amount);
+            formData.append("margin_id", "1");
+
+            formData.append("", photoData.image);
+            formData.append(
+                "photo",
+                this.dataURLToBlob(photoData.image),
+                "1.jpg",
+            );
+
+            if (lastPhoto) {
+                formData.append("last_photo", "1");
+            }
+
+            if (order_id != 0) {
+                formData.append("order_id", order_id);
+            }
+
+            formData.append("name", "Максим");
+            formData.append("surname", "Трапезников");
+            formData.append("email", "maxim.trz@gmail.com");
+            formData.append("phone", "9068715548");
+            formData.append("delivery_type", "1");
+            formData.append("pay_type", "1");
+            formData.append("delivery_adress", "55555");
+
+            const response = await axios.post(
+                `${this.baseUrl}/api/photo`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                },
+            );
+
+            return response.data;
+        } catch (error) {
+            throw new Error("Failed to save photo");
+        }
+    }
+
+    dataURLToBlob(dataURL) {
+        const BASE64_MARKER = ";base64,";
+
+        if (dataURL.indexOf(BASE64_MARKER) === -1) {
+            const parts = dataURL.split(",");
+            const contentType = parts[0].split(":")[1];
+            const raw = decodeURIComponent(parts[1]);
+
+            return new Blob([raw], { type: contentType });
+        }
+
+        const parts = dataURL.split(BASE64_MARKER);
+        const contentType = parts[0].split(":")[1];
+        const raw = window.atob(parts[1]);
+        const rawLength = raw.length;
+
+        const uInt8Array = new Uint8Array(rawLength);
+
+        for (let i = 0; i < rawLength; ++i) {
+            uInt8Array[i] = raw.charCodeAt(i);
+        }
+
+        return new Blob([uInt8Array], { type: contentType });
     }
 
     getPrices(): {

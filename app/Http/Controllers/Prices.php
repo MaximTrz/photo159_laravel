@@ -38,12 +38,4 @@ class Prices extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Price $price)
-    {
-        //
-    }
-
 }

@@ -48,7 +48,8 @@ const usePhotoProperties = () => {
                     price.material_id === materialID &&
                     price.size_id === sizeID,
             );
-            return result;
+            const price = result ? result.price : 0;
+            return { price: price };
         },
         [prices],
     );
@@ -56,8 +57,7 @@ const usePhotoProperties = () => {
     const setMaterial = React.useCallback(
         (photo: PhotoType, materialID: number) => {
             const price = findPriceByIDs(materialID, photo.size_id);
-
-            if (price) {
+            if (price.price > 0) {
                 dispatch(
                     setPhotoMaterial({ id: photo.id, materialId: materialID }),
                 );
@@ -89,7 +89,7 @@ const usePhotoProperties = () => {
         (photo: PhotoType, sizeID: number) => {
             const price = findPriceByIDs(photo.material_id, sizeID);
 
-            if (price) {
+            if (price.price > 0) {
                 dispatch(
                     setPhotoSize({
                         id: photo.id,
@@ -132,8 +132,10 @@ const usePhotoProperties = () => {
 
     const totalSum = useMemo(() => {
         return photos.reduce((total, photo) => {
-            const pricePhoto =
-                findPriceByIDs(photo.material_id, photo.size_id)?.price || 0;
+            const pricePhoto = findPriceByIDs(
+                photo.material_id,
+                photo.size_id,
+            )?.price;
             const sum = pricePhoto * photo.amount;
             return total + sum;
         }, 0);

@@ -20,6 +20,11 @@ const initialState: StateType = {
         margin_id: 1,
     },
     loaded: false,
+    preloading: false,
+    uploading: {
+        show: false,
+        uploaded: 0,
+    },
 };
 
 const toolkitSlice = createSlice({
@@ -40,6 +45,9 @@ const toolkitSlice = createSlice({
         },
         setLoaded: (state, { payload }: { payload: boolean }) => {
             state.loaded = payload;
+        },
+        setPreloading: (state, { payload }: { payload: boolean }) => {
+            state.preloading = payload;
         },
 
         addPhoto: (state, { payload }: { payload }) => {
@@ -171,6 +179,7 @@ export const {
     setMargins,
     setAmount,
     setLoaded,
+    setPreloading,
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,
