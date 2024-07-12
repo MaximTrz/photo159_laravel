@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
-import { useMemo } from "react";
 
 const usePhotos = () => {
     const photosList = useSelector(
@@ -15,9 +14,7 @@ const usePhotos = () => {
         (state: ToolKitStateType) => state.toolkitSlice.uploading,
     );
 
-    const memoizedPhotosList = useMemo(() => photosList, [photosList]);
-
-    return { photosList: memoizedPhotosList, preloading, uploading };
+    return { photosList, preloading, uploading };
 };
 
 export default usePhotos;

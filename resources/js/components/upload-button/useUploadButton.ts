@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import usePhotos from "../../hooks/usePhotos";
-import { addPhoto, setPreloading } from "../../store/Reducer";
+import { setPreloading, addPhotos } from "../../store/Reducer";
 
 const useUploadButton = () => {
     const dispatch = useDispatch();
@@ -15,18 +15,21 @@ const useUploadButton = () => {
             }
 
             let filesProcessed = 0;
+            const newPhotos: string[] = [];
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 const imageReader = new FileReader();
 
                 imageReader.onload = (event) => {
-                    dispatch(addPhoto(event.target?.result));
+                    if (typeof event.target?.result === "string") {
+                        newPhotos.push(event.target.result);
+                    }
 
                     filesProcessed++;
 
                     if (filesProcessed === files.length) {
-                        dispatch(setPreloading(false));
+                        dispatch(addPhotos(newPhotos));
                     }
                 };
 

@@ -50,19 +50,24 @@ const toolkitSlice = createSlice({
             state.preloading = payload;
         },
 
-        addPhoto: (state, { payload }: { payload }) => {
-            const newID = state.lastID + 1;
-            state.lastID++;
-            const newPhoto = {
-                id: newID,
-                size_id: 4,
-                material_id: 1,
-                amount: 1,
-                margin_id: 1,
-                image: payload,
-            };
-            state.photos.push(newPhoto);
+        addPhotos: (state, { payload }: { payload: string[] }) => {
+            const newPhotos = payload.map((photo) => {
+                const newID = state.lastID + 1;
+                state.lastID++;
+                return {
+                    id: newID,
+                    size_id: 4,
+                    material_id: 1,
+                    amount: 1,
+                    margin_id: 1,
+                    image: photo,
+                };
+            });
+
+            state.photos = [...state.photos, ...newPhotos];
+            state.preloading = false;
         },
+
         setAmount: (
             state,
             { payload }: { payload: { id: number; amount: number } },
@@ -175,7 +180,7 @@ export const {
     setPrices,
     setMaterials,
     setSizes,
-    addPhoto,
+    addPhotos,
     setMargins,
     setAmount,
     setLoaded,
