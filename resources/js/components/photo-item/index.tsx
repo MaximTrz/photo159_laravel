@@ -16,6 +16,8 @@ import "./style.scss";
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
 
+    console.log(1);
+
     const {
         sizesForSelect,
         materials,
@@ -44,32 +46,32 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const handleClickPlusAmount = useCallback(() => {
         const newValue = photo.amount + 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [photo]);
+    }, [photo.amount]);
 
     const handleClickMinusAmount = useCallback(() => {
         const newValue = photo.amount - 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [photo]);
+    }, [photo.amount]);
 
     const handleSelectMaterial = useCallback(
         (selectedId: number) => {
             setMaterial(photo, selectedId);
         },
-        [photo, setMaterial],
+        [photo.material_id, setMaterial],
     );
 
     const handleSelectSize = useCallback(
         (selectedId: number) => {
             setSize(photo, selectedId);
         },
-        [photo, setSize],
+        [photo.size_id, setSize],
     );
 
     const handleSelectMargin = useCallback(
         (selectedId: number) => {
             setMargin(photo.id, selectedId);
         },
-        [photo, setMargin],
+        [photo.margin_id, setMargin],
     );
 
     const totalPrice = useMemo(() => {
@@ -153,4 +155,4 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     );
 };
 
-export default PhotoItem;
+export default React.memo(PhotoItem);
