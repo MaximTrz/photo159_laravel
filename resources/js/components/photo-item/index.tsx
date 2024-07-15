@@ -15,7 +15,7 @@ import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
-
+    console.log(photo);
     const {
         sizesForSelect,
         materials,

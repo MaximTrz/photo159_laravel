@@ -15,25 +15,17 @@ const useUploadButton = () => {
             }
 
             let filesProcessed = 0;
-            const newPhotos: string[] = [];
+            const fileURLs: string[] = [];
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                const imageReader = new FileReader();
+                const fileURL = URL.createObjectURL(file);
+                fileURLs.push(fileURL);
+                filesProcessed++;
 
-                imageReader.onload = (event) => {
-                    if (typeof event.target?.result === "string") {
-                        newPhotos.push(event.target.result);
-                    }
-
-                    filesProcessed++;
-
-                    if (filesProcessed === files.length) {
-                        dispatch(addPhotos(newPhotos));
-                    }
-                };
-
-                imageReader.readAsDataURL(file);
+                if (filesProcessed === files.length) {
+                    dispatch(addPhotos(fileURLs));
+                }
             }
         },
         [dispatch],

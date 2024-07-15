@@ -38,17 +38,15 @@ export default class ApiService {
             formData.append("margin_id", "1");
 
             formData.append("", photoData.image);
-            formData.append(
-                "photo",
-                this.dataURLToBlob(photoData.image),
-                "1.jpg",
-            );
+            const blob = this.dataURLToBlob(photoData.image);
+
+            formData.append("photo", blob, photoData.fileName);
 
             if (lastPhoto) {
                 formData.append("last_photo", "1");
             }
 
-            if (order_id != 0) {
+            if (order_id !== 0) {
                 formData.append("order_id", order_id);
             }
 
