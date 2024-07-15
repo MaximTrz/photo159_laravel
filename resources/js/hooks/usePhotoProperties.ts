@@ -15,10 +15,6 @@ import PhotoType from "../types/PhotoType";
 const usePhotoProperties = () => {
     const dispatch = useDispatch();
 
-    const photos = useSelector(
-        (state: ToolKitStateType) => state.toolkitSlice.photos,
-    );
-
     const sizes = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.sizes,
     );
@@ -126,28 +122,11 @@ const usePhotoProperties = () => {
         [],
     );
 
-    const totalPhotosCount = useMemo(() => {
-        return photos.reduce((total, photo) => total + photo.amount, 0);
-    }, [photos]);
-
-    const totalSum = useMemo(() => {
-        return photos.reduce((total, photo) => {
-            const pricePhoto = findPriceByIDs(
-                photo.material_id,
-                photo.size_id,
-            )?.price;
-            const sum = pricePhoto * photo.amount;
-            return total + sum;
-        }, 0);
-    }, [photos, findPriceByIDs, prices]);
-
     return {
         materials,
         sizesForSelect,
         margins,
         prices,
-        totalPhotosCount,
-        totalSum,
         setMaterial,
         setSize,
         findPriceByIDs,

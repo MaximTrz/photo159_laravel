@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useMemo } from "react";
 import usePhotos from "../../hooks/usePhotos";
-import usePhotoProperties from "../../hooks/usePhotoProperties";
+
 import PhotoItem from "../photo-item";
 import ApplyAll from "../apply-all";
 import DeleteAll from "../delete-all";
@@ -10,8 +10,7 @@ import CheckoutButton from "../checkout-button";
 import "./style.scss";
 
 const Photos: React.FC = () => {
-    const { photosList } = usePhotos();
-    const { totalPhotosCount, totalSum } = usePhotoProperties();
+    const { photosList, totalPhotosCount, totalSum } = usePhotos();
 
     const memoizedPhotosList = useMemo(() => photosList, [photosList]);
 
@@ -64,4 +63,4 @@ const Photos: React.FC = () => {
     );
 };
 
-export default Photos;
+export default React.memo(Photos);

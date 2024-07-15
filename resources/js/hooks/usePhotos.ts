@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
 import { useMemo } from "react";
 
+import usePhotoProperties from "./usePhotoProperties";
+
 const usePhotos = () => {
+    const { findPriceByIDs } = usePhotoProperties();
+
     const photosList = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.photos,
     );
@@ -15,16 +19,22 @@ const usePhotos = () => {
         (state: ToolKitStateType) => state.toolkitSlice.uploading,
     );
 
-    const memoizedValues = useMemo(
-        () => ({
-            photosList,
-            preloading,
-            uploading,
-        }),
-        [photosList, preloading, uploading],
-    );
+    const totalPhotosCount = useMemo(() => {
+        return photosList.reduce((total, photo) => total + photo.amount, 0);
+    }, [photosList]);
 
-    return memoizedValues;
+    const totalSum = useMemo(() => {
+        return photosList.reduce((total, photo) => {
+            const pricePhoto = findPriceByIDs(
+                photo.material_id,
+                photo.size_id,
+            )?.price;
+            const sum = pricePhoto * photo.amount;
+            return total + sum;
+        }, 0);
+    }, [photosList]);
+
+    return { photosList, preloading, uploading, totalPhotosCount, totalSum };
 };
 
 export default usePhotos;
