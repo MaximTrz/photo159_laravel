@@ -19,6 +19,10 @@ const usePhotos = () => {
         (state: ToolKitStateType) => state.toolkitSlice.uploading,
     );
 
+    const photoUploaded = useMemo(() => {
+        return photosList.filter((photo) => photo.uploaded).length;
+    }, [photosList]);
+
     const totalPhotosCount = useMemo(() => {
         return photosList.reduce((total, photo) => total + photo.amount, 0);
     }, [photosList]);
@@ -34,7 +38,14 @@ const usePhotos = () => {
         }, 0);
     }, [photosList]);
 
-    return { photosList, preloading, uploading, totalPhotosCount, totalSum };
+    return {
+        photosList,
+        preloading,
+        uploading,
+        photoUploaded,
+        totalPhotosCount,
+        totalSum,
+    };
 };
 
 export default usePhotos;

@@ -19,8 +19,5 @@ export default interface StateType {
     };
     loaded: boolean;
     preloading: boolean;
-    uploading: {
-        show: false;
-        uploaded: number;
-    };
+    uploading: boolean;
 }

@@ -7,6 +7,8 @@ import ApplyAll from "../apply-all";
 import DeleteAll from "../delete-all";
 import CheckoutButton from "../checkout-button";
 
+import LazyLoad from "react-lazyload";
+
 import "./style.scss";
 
 const Photos: React.FC = () => {
@@ -39,7 +41,9 @@ const Photos: React.FC = () => {
                 <div className="photos__items">
                     {memoizedPhotosList.map((photo) => (
                         <div className="photos__item" key={photo.id}>
-                            <PhotoItem photo={photo} />
+                            <LazyLoad height={200} once>
+                                <PhotoItem photo={photo} />
+                            </LazyLoad>
                         </div>
                     ))}
                 </div>

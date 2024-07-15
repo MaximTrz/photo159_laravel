@@ -5,4 +5,5 @@ export default interface PhotoType {
     amount: number;
     margin_id: number;
     image: string;
+    uploaded: boolean;
 }

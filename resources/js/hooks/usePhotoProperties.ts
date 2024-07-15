@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
@@ -8,6 +7,8 @@ import {
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,
+    deleteAll,
+    setUploading,
 } from "../store/Reducer";
 
 import PhotoType from "../types/PhotoType";
@@ -37,7 +38,7 @@ const usePhotoProperties = () => {
         (state: ToolKitStateType) => state.toolkitSlice.prices,
     );
 
-    const findPriceByIDs = React.useCallback(
+    const findPriceByIDs = useCallback(
         (materialID: number, sizeID: number) => {
             const result = prices.find(
                 (price) =>
@@ -50,7 +51,7 @@ const usePhotoProperties = () => {
         [prices],
     );
 
-    const setMaterial = React.useCallback(
+    const setMaterial = useCallback(
         (photo: PhotoType, materialID: number) => {
             const price = findPriceByIDs(materialID, photo.size_id);
             if (price.price > 0) {
@@ -81,7 +82,7 @@ const usePhotoProperties = () => {
         [findPriceByIDs, prices],
     );
 
-    const setSize = React.useCallback(
+    const setSize = useCallback(
         (photo: PhotoType, sizeID: number) => {
             const price = findPriceByIDs(photo.material_id, sizeID);
 
@@ -115,12 +116,17 @@ const usePhotoProperties = () => {
         },
         [findPriceByIDs, prices],
     );
-    const setMargin = React.useCallback(
-        (photoId: number, margin_id: number) => {
-            dispatch(setPhotoMargin({ id: photoId, marginId: margin_id }));
-        },
-        [],
-    );
+    const setMargin = useCallback((photoId: number, margin_id: number) => {
+        dispatch(setPhotoMargin({ id: photoId, marginId: margin_id }));
+    }, []);
+
+    const deleteAllPhoto = useCallback(() => {
+        dispatch(deleteAll());
+    }, []);
+
+    const setUploadingStatus = useCallback((uploading) => {
+        dispatch(setUploading(uploading));
+    }, []);
 
     return {
         materials,
@@ -131,6 +137,8 @@ const usePhotoProperties = () => {
         setSize,
         findPriceByIDs,
         setMargin,
+        deleteAllPhoto,
+        setUploadingStatus,
     };
 };
 
