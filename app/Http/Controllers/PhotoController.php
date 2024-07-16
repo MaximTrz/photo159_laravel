@@ -11,6 +11,8 @@ use ZipArchive;
 
 class PhotoController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */

@@ -35,7 +35,18 @@ const UploadDialog = () => {
                         variant="determinate"
                         value={uploadingPercent}
                     />
+                    <Box
+                        sx={{
+                            width: "100%",
+                            mr: 1,
+                            textAlign: "center",
+                            marginTop: "10px",
+                        }}
+                    >
+                        {photoUploaded} из {photosList.length}
+                    </Box>
                 </Box>
+
                 <Box sx={{ minWidth: 35 }}>
                     <Typography
                         variant="body2"
