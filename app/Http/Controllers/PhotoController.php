@@ -7,7 +7,6 @@ use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Size;
 use Illuminate\Http\Request;
-use ZipArchive;
 
 class PhotoController extends Controller
 {
@@ -75,22 +74,48 @@ class PhotoController extends Controller
         $size_title = "{$size->width}X{$size->height}";
         $material = Material::find($photo->material_id);
 
-        $zip = new ZipArchive;
-        $zipPath = storage_path("app/public/uploads/{$order_id}.zip");
-        if ($zip->open($zipPath, ZipArchive::CREATE) === true)
-        {
-            $fileNameInArchive = 'размер_'.$size_title.'_материал_'.$material->name.'_'.'id_'.$photo->id.'_'.$file->getClientOriginalName();
-            $pathInArchive = 'photos/' . $fileNameInArchive;
-            $zip->addFile($file->path(), $pathInArchive);
-            $zip->close();
+
+        $fileNameInFolder = "размер_{$size_title}_материал_{$material->name}_id_{$photo->id}_{$file->getClientOriginalName()}";
+        $folderPath = storage_path("app/public/uploads/{$order_id}");
+
+        
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0777, true);
         }
 
-        if($request->has('last_photo'))
-        {
+        $filePath = "{$folderPath}/{$fileNameInFolder}";
+
+        // Save the photo in the order folder
+        file_put_contents($filePath, file_get_contents($file->path()));
+
+        if ($request->has('last_photo')) {
+            // Получение всех файлов в папке заказа
+            $filesInFolder = glob("{$folderPath}/*");
+
+            $zipFile = new \PhpZip\ZipFile();
+
+           
+            foreach ($filesInFolder as $file) {
+                $zipFile->addFile($file, basename($file), \PhpZip\Constants\ZipCompressionMethod::STORED);
+            }
+       
+            $zipPath = storage_path("app/public/uploads/{$order_id}.zip");
+            $zipFile->saveAsFile($zipPath);
+            $zipFile->close();
+
+            // Удаление файлов и папки заказа
+            foreach ($filesInFolder as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
+            // Удаление самой папки
+            rmdir($folderPath);
+
+            
             $order->status = 2;
             $order->save();
         }
-
         return response()->json(['message' => 'Запись успешно сохранена', 'photo_id' => $photo->id, 'order_id' => $order->id,], 201);
 
     }
