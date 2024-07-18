@@ -6,7 +6,7 @@
 
     @vite('resources/js/app.jsx')
 
-    <title>Keyboard trainer</title>
+    <title>Печать фото онлайн</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

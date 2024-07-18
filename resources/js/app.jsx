@@ -9,7 +9,6 @@ import { store } from "./store";
 
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import PreloadDialog from "./components/preload-dialog";
 import UploadDialog from "./components/upload-dialog";
 
 import "./bootstrap";
@@ -42,7 +41,6 @@ const App = () => {
             ) : (
                 <>
                     <UploadDialog />
-                    <PreloadDialog />
                     <Router />
                 </>
             )}
