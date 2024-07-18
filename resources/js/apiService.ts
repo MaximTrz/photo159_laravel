@@ -34,7 +34,7 @@ export default class ApiService {
             formData.append("phone", "9068715548");
             formData.append("delivery_type", "1");
             formData.append("pay_type", "1");
-            formData.append("delivery_adress", "55555");
+            formData.append("delivery_address", "Бачурина 1");
 
             const response = await axios.post(
                 `${this.baseUrl}/api/photo`,
@@ -53,7 +53,7 @@ export default class ApiService {
 
     async getPricesFormServer() {
         try {
-            const response = await axios.get(`${this.baseUrl}/api/price`);
+            const response = await axios.get(`${this.baseUrl}/api/prices`);
             return response.data;
         } catch (error) {
             throw new Error("Failed to fetch price data");

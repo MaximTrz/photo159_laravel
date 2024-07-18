@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PhotoController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +20,6 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::apiResource('price', \App\Http\Controllers\Prices::class);
+Route::get('prices', [\App\Http\Controllers\Prices::class, 'index']);
 
-Route::apiResource('photo', \App\Http\Controllers\PhotoController::class);
+Route::post('photo', [PhotoController::class, 'store']);
