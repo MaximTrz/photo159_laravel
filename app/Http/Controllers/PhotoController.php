@@ -85,7 +85,6 @@ class PhotoController extends Controller
 
         $filePath = "{$folderPath}/{$fileNameInFolder}";
 
-        // Save the photo in the order folder
         file_put_contents($filePath, file_get_contents($file->path()));
 
         if ($request->has('last_photo')) {
