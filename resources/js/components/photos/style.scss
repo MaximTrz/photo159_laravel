@@ -79,6 +79,20 @@
     }
     &__items {
         flex-basis: 880px;
+
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, 180px);
+        padding: 30px;
+        background-color: #fff;
+        @include small-desktop {
+            padding: 15px;
+        }
+        @include phone {
+            padding: 10px;
+            grid-template-columns: auto;
+        }
+
         @include wide-desktop {
             flex-basis: 70%;
         }
@@ -95,6 +109,8 @@
             order: 2;
             width: 100%;
         }
+
+        
     }
     &__apply-all {
         order: 1;
@@ -144,3 +160,5 @@
         width: 100%;
     }
 }
+
+

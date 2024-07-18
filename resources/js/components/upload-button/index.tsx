@@ -9,7 +9,10 @@ const UploadButton: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleButtonClick = useCallback(() => {
-        fileInputRef.current?.click();
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+            fileInputRef.current?.click();
+        }
     }, []);
 
     const { addImages } = useUploadButton();

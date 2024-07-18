@@ -15,7 +15,7 @@ import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
-
+    console.log(photo);
     const {
         sizesForSelect,
         materials,
@@ -44,33 +44,46 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const handleClickPlusAmount = useCallback(() => {
         const newValue = photo.amount + 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [photo]);
+    }, [photo.amount]);
 
     const handleClickMinusAmount = useCallback(() => {
         const newValue = photo.amount - 1;
         dispatch(setAmount({ id: photo.id, amount: newValue }));
-    }, [photo]);
+    }, [photo.amount]);
 
     const handleSelectMaterial = useCallback(
         (selectedId: number) => {
             setMaterial(photo, selectedId);
         },
-        [photo, setMaterial],
+        [photo.material_id, setMaterial],
     );
 
     const handleSelectSize = useCallback(
         (selectedId: number) => {
             setSize(photo, selectedId);
         },
-        [photo, setSize],
+        [photo.size_id, setSize],
     );
 
     const handleSelectMargin = useCallback(
         (selectedId: number) => {
             setMargin(photo.id, selectedId);
         },
-        [photo, setMargin],
+        [photo.margin_id, setMargin],
     );
+
+    const totalPrice = useMemo(() => {
+        return (
+            Number(findPriceByIDs(photo.material_id, photo.size_id)?.price) *
+            photo.amount
+        );
+    }, [
+        photo.material_id,
+        photo.size_id,
+        photo.amount,
+        findPriceByIDs,
+        filteredSizes,
+    ]);
 
     return (
         <div className="photo-item">
@@ -102,16 +115,6 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                         />
                     </div>
                 </div>
-                <div className="photo-item__select">
-                    <div className="photo-item__select-title">Размер:</div>
-                    <div className="photo-item__select-item">
-                        <Select
-                            options={filteredSizes}
-                            selected={photo.size_id}
-                            handleSelect={handleSelectSize}
-                        />
-                    </div>
-                </div>
                 <div className="photo-item__select --mb10">
                     <div className="photo-item__select-title">Кол-во:</div>
                     <div className="photo-item__select-item">
@@ -124,12 +127,7 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
                 </div>
                 <div className="photo-item__sum">
                     Цена:{" "}
-                    <span className="photo-item__sum-digit">
-                        {Number(
-                            findPriceByIDs(photo.material_id, photo.size_id)
-                                ?.price,
-                        ) * photo.amount}
-                    </span>{" "}
+                    <span className="photo-item__sum-digit">{totalPrice}</span>{" "}
                     ₽
                 </div>
                 <div className="photo-item__select --mb10">
@@ -155,4 +153,4 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     );
 };
 
-export default PhotoItem;
+export default React.memo(PhotoItem);

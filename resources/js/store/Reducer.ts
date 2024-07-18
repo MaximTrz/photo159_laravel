@@ -5,6 +5,7 @@ import PriceType from "../types/PriceType";
 import MaterialType from "../types/MaterialType";
 import SizeType from "../types/SizeType";
 import OptionsType from "../types/OptionsType";
+import PhotoType from "../types/PhotoType";
 
 const initialState: StateType = {
     prices: [],
@@ -20,6 +21,8 @@ const initialState: StateType = {
         margin_id: 1,
     },
     loaded: false,
+    preloading: false,
+    uploading: false,
 };
 
 const toolkitSlice = createSlice({
@@ -41,20 +44,40 @@ const toolkitSlice = createSlice({
         setLoaded: (state, { payload }: { payload: boolean }) => {
             state.loaded = payload;
         },
-
-        addPhoto: (state, { payload }: { payload }) => {
-            const newID = state.lastID + 1;
-            state.lastID++;
-            const newPhoto = {
-                id: newID,
-                size_id: 4,
-                material_id: 1,
-                amount: 1,
-                margin_id: 1,
-                image: payload,
-            };
-            state.photos.push(newPhoto);
+        setPreloading: (state, { payload }: { payload: boolean }) => {
+            state.preloading = payload;
         },
+        setPhotoUploaded: (state, { payload }: { payload: PhotoType }) => {
+            const photoToUpdate = state.photos.find(
+                (photo) => photo.id === payload.id,
+            );
+            if (photoToUpdate) {
+                photoToUpdate.uploaded = true;
+            }
+        },
+        setUploading: (state, { payload }: { payload: boolean }) => {
+            state.uploading = payload;
+        },
+
+        addPhotos: (state, { payload }: { payload: string[] }) => {
+            const newPhotos = payload.map((photo) => {
+                const newID = state.lastID + 1;
+                state.lastID++;
+                return {
+                    id: newID,
+                    size_id: 4,
+                    material_id: 1,
+                    amount: 1,
+                    margin_id: 1,
+                    image: photo,
+                    uploaded: false,
+                };
+            });
+
+            state.photos = [...state.photos, ...newPhotos];
+            state.preloading = false;
+        },
+
         setAmount: (
             state,
             { payload }: { payload: { id: number; amount: number } },
@@ -167,10 +190,13 @@ export const {
     setPrices,
     setMaterials,
     setSizes,
-    addPhoto,
+    addPhotos,
     setMargins,
     setAmount,
     setLoaded,
+    setPreloading,
+    setPhotoUploaded,
+    setUploading,
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,

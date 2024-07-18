@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
@@ -8,16 +7,14 @@ import {
     setPhotoMaterial,
     setPhotoSize,
     setPhotoMargin,
+    deleteAll,
+    setUploading,
 } from "../store/Reducer";
 
 import PhotoType from "../types/PhotoType";
 
 const usePhotoProperties = () => {
     const dispatch = useDispatch();
-
-    const photos = useSelector(
-        (state: ToolKitStateType) => state.toolkitSlice.photos,
-    );
 
     const sizes = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.sizes,
@@ -41,23 +38,23 @@ const usePhotoProperties = () => {
         (state: ToolKitStateType) => state.toolkitSlice.prices,
     );
 
-    const findPriceByIDs = React.useCallback(
+    const findPriceByIDs = useCallback(
         (materialID: number, sizeID: number) => {
             const result = prices.find(
                 (price) =>
                     price.material_id === materialID &&
                     price.size_id === sizeID,
             );
-            return result;
+            const price = result ? result.price : 0;
+            return { price: price };
         },
         [prices],
     );
 
-    const setMaterial = React.useCallback(
+    const setMaterial = useCallback(
         (photo: PhotoType, materialID: number) => {
             const price = findPriceByIDs(materialID, photo.size_id);
-
-            if (price) {
+            if (price.price > 0) {
                 dispatch(
                     setPhotoMaterial({ id: photo.id, materialId: materialID }),
                 );
@@ -85,11 +82,11 @@ const usePhotoProperties = () => {
         [findPriceByIDs, prices],
     );
 
-    const setSize = React.useCallback(
+    const setSize = useCallback(
         (photo: PhotoType, sizeID: number) => {
             const price = findPriceByIDs(photo.material_id, sizeID);
 
-            if (price) {
+            if (price.price > 0) {
                 dispatch(
                     setPhotoSize({
                         id: photo.id,
@@ -119,37 +116,29 @@ const usePhotoProperties = () => {
         },
         [findPriceByIDs, prices],
     );
-    const setMargin = React.useCallback(
-        (photoId: number, margin_id: number) => {
-            dispatch(setPhotoMargin({ id: photoId, marginId: margin_id }));
-        },
-        [],
-    );
+    const setMargin = useCallback((photoId: number, margin_id: number) => {
+        dispatch(setPhotoMargin({ id: photoId, marginId: margin_id }));
+    }, []);
 
-    const totalPhotosCount = useMemo(() => {
-        return photos.reduce((total, photo) => total + photo.amount, 0);
-    }, [photos]);
+    const deleteAllPhoto = useCallback(() => {
+        dispatch(deleteAll());
+    }, []);
 
-    const totalSum = useMemo(() => {
-        return photos.reduce((total, photo) => {
-            const pricePhoto =
-                findPriceByIDs(photo.material_id, photo.size_id)?.price || 0;
-            const sum = pricePhoto * photo.amount;
-            return total + sum;
-        }, 0);
-    }, [photos, findPriceByIDs, prices]);
+    const setUploadingStatus = useCallback((uploading) => {
+        dispatch(setUploading(uploading));
+    }, []);
 
     return {
         materials,
         sizesForSelect,
         margins,
         prices,
-        totalPhotosCount,
-        totalSum,
         setMaterial,
         setSize,
         findPriceByIDs,
         setMargin,
+        deleteAllPhoto,
+        setUploadingStatus,
     };
 };
 

@@ -1,16 +1,20 @@
 import * as React from "react";
+import { useMemo } from "react";
 import usePhotos from "../../hooks/usePhotos";
-import usePhotoProperties from "../../hooks/usePhotoProperties";
-import PhotosList from "../photos-list";
+
+import PhotoItem from "../photo-item";
 import ApplyAll from "../apply-all";
 import DeleteAll from "../delete-all";
 import CheckoutButton from "../checkout-button";
 
+import LazyLoad from "react-lazyload";
+
 import "./style.scss";
 
 const Photos: React.FC = () => {
-    const { photosList } = usePhotos();
-    const { totalPhotosCount, totalSum } = usePhotoProperties();
+    const { photosList, totalPhotosCount, totalSum } = usePhotos();
+
+    const memoizedPhotosList = useMemo(() => photosList, [photosList]);
 
     return (
         <div className="photos">
@@ -35,7 +39,13 @@ const Photos: React.FC = () => {
 
             <div className="photos__wrapper">
                 <div className="photos__items">
-                    <PhotosList photos={photosList} />
+                    {memoizedPhotosList.map((photo) => (
+                        <div className="photos__item" key={photo.id}>
+                            <LazyLoad height={200} once>
+                                <PhotoItem photo={photo} />
+                            </LazyLoad>
+                        </div>
+                    ))}
                 </div>
 
                 <div className="photos__apply-all">
@@ -57,4 +67,4 @@ const Photos: React.FC = () => {
     );
 };
 
-export default Photos;
+export default React.memo(Photos);

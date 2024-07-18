@@ -3,6 +3,8 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import PriceTable from "../../components/price-table";
 import usePrices from "./usePrices";
 
+import chunkArray from "../../utils/chunkArray";
+
 const Prices: React.FC = () => {
     const {
         baseSizes,
@@ -13,16 +15,7 @@ const Prices: React.FC = () => {
     } = usePrices();
     const { width } = useWindowSize();
     let tables;
-    const chunkArray = (array, size) => {
-        return array.reduce((chunks, item, index) => {
-            if (index % size === 0) {
-                chunks.push([item]);
-            } else {
-                chunks[chunks.length - 1].push(item);
-            }
-            return chunks;
-        }, []);
-    };
+
     if (width) {
         if (width > 768) {
             tables = (

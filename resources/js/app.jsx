@@ -2,12 +2,15 @@ import * as React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import Router from "./router";
 import { fetchPriceData } from "./store/thunks";
 import { store } from "./store";
+
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import PreloadDialog from "./components/preload-dialog";
+import UploadDialog from "./components/upload-dialog";
 
 import "./bootstrap";
 import "normalize.css";
@@ -37,7 +40,11 @@ const App = () => {
                     <CircularProgress />
                 </Box>
             ) : (
-                <Router />
+                <>
+                    <UploadDialog />
+                    <PreloadDialog />
+                    <Router />
+                </>
             )}
         </>
     );

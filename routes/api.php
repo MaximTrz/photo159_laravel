@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::apiResource('price', \App\Http\Controllers\Prices::class);
+
+Route::apiResource('photo', \App\Http\Controllers\PhotoController::class);

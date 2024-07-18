@@ -18,4 +18,6 @@ export default interface StateType {
         margin_id: number;
     };
     loaded: boolean;
+    preloading: boolean;
+    uploading: boolean;
 }
