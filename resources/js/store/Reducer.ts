@@ -139,42 +139,29 @@ const toolkitSlice = createSlice({
                 (size) => size.id === payload.sizeId,
             );
             if (isValidSize) {
-                state.aplyAll = {
-                    ...state.aplyAll,
-                    amount: payload.sizeId,
-                };
+                state.aplyAll.size_id = payload.sizeId;
             }
         },
         setApplyAllMaterial: (
             state,
             { payload }: { payload: { matetialId: number } },
         ) => {
-            state.aplyAll = {
-                ...state.aplyAll,
-                amount: payload.matetialId,
-            };
+            state.aplyAll.material_id = payload.matetialId;
         },
         setApplyAllMargin: (
             state,
             { payload }: { payload: { marginId: number } },
         ) => {
-            state.aplyAll = {
-                ...state.aplyAll,
-                amount: payload.marginId,
-            };
+            state.aplyAll.margin_id = payload.marginId;
         },
         setApplyAllAmount: (
             state,
             { payload }: { payload: { amount: number } },
         ) => {
             if (payload.amount > 0) {
-                state.aplyAll = {
-                    ...state.aplyAll,
-                    amount: payload.amount,
-                };
+                state.aplyAll.amount = payload.amount;
             }
         },
-
         applyAll: (state) => {
             const { size_id, material_id, amount, margin_id } = state.aplyAll;
 
