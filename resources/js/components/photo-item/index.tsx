@@ -15,7 +15,7 @@ import "./style.scss";
 
 const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
     const dispatch = useDispatch();
-    console.log(photo);
+
     const {
         sizesForSelect,
         materials,
@@ -32,8 +32,8 @@ const PhotoItem: React.FC<{ photo: PhotoType }> = ({ photo }) => {
         return sizesForSelect.filter((size) => {
             const price = prices.find(
                 (price) =>
-                    price.size_id === size.id &&
-                    price.material_id === photo.material_id,
+                    price.size_id == size.id &&
+                    price.material_id == photo.material_id,
             );
             if (price) {
                 return size;

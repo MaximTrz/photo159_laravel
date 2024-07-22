@@ -139,27 +139,39 @@ const toolkitSlice = createSlice({
                 (size) => size.id === payload.sizeId,
             );
             if (isValidSize) {
-                state.aplyAll.size_id = payload.sizeId;
+                state.aplyAll = {
+                    ...state.aplyAll,
+                    amount: payload.sizeId,
+                };
             }
         },
         setApplyAllMaterial: (
             state,
             { payload }: { payload: { matetialId: number } },
         ) => {
-            state.aplyAll.material_id = payload.matetialId;
+            state.aplyAll = {
+                ...state.aplyAll,
+                amount: payload.matetialId,
+            };
         },
         setApplyAllMargin: (
             state,
             { payload }: { payload: { marginId: number } },
         ) => {
-            state.aplyAll.margin_id = payload.marginId;
+            state.aplyAll = {
+                ...state.aplyAll,
+                amount: payload.marginId,
+            };
         },
         setApplyAllAmount: (
             state,
             { payload }: { payload: { amount: number } },
         ) => {
             if (payload.amount > 0) {
-                state.aplyAll.amount = payload.amount;
+                state.aplyAll = {
+                    ...state.aplyAll,
+                    amount: payload.amount,
+                };
             }
         },
 

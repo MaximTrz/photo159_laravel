@@ -7,7 +7,7 @@ import mdx from "@mdx-js/rollup";
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.jsx"],
+            input: ["resources/css/app.css", "resources/js/app.tsx"],
             refresh: true,
         }),
         { enforce: "pre", ...mdx() },
@@ -17,7 +17,7 @@ export default defineConfig({
         force: true,
         esbuildOptions: {
             loader: {
-                ".js": "jsx",
+                ".ts": "tsx",
             },
         },
     },

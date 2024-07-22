@@ -23,8 +23,8 @@ const useApplyAll = () => {
         return sizesForSelect.filter((size) => {
             const price = prices.find(
                 (price) =>
-                    price.size_id === size.id &&
-                    price.material_id === applyAllValues.material_id,
+                    price.size_id == size.id &&
+                    price.material_id == applyAllValues.material_id,
             );
             if (price) {
                 return size;

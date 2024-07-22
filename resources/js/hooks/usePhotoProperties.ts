@@ -42,8 +42,7 @@ const usePhotoProperties = () => {
         (materialID: number, sizeID: number) => {
             const result = prices.find(
                 (price) =>
-                    price.material_id === materialID &&
-                    price.size_id === sizeID,
+                    price.material_id == materialID && price.size_id == sizeID,
             );
             const price = result ? result.price : 0;
             return { price: price };
