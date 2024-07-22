@@ -3,6 +3,7 @@
 .price-table-row {
     &__head {
         text-align: left;
+        font-family: $base-font-family;
         font-size: 18px;
         font-weight: 600;
         padding-right: 20px;

@@ -21,6 +21,7 @@
         padding: 0 5px 1px 5px;
         font-size: 18px;
         font-weight: 600;
+        font-family: $base-font-family;
         @include small-desktop {
             font-size: 16px;
         }
