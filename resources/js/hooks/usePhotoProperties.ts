@@ -45,7 +45,7 @@ const usePhotoProperties = () => {
                     price.material_id == materialID && price.size_id == sizeID,
             );
             const price = result ? result.price : 0;
-            return { price: price };
+            return { price: Number(price) };
         },
         [prices],
     );
