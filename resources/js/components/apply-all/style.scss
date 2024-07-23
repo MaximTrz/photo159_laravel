@@ -42,5 +42,8 @@
         &:hover {
             background-color: darken($base-blue, 15%);
         }
+        @include tablet {
+            padding: 8px 27px 5px 27px;
+        }
     }
 }
