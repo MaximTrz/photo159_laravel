@@ -59,4 +59,13 @@ export default class ApiService {
             throw new Error("Failed to fetch price data");
         }
     }
+
+    async getFAQFromServer() {
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/faq`);
+            return response.data;
+        } catch (error) {
+            throw new Error("Failed to fetch price data");
+        }
+    }
 }

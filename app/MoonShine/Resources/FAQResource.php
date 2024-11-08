@@ -20,7 +20,7 @@ class FAQResource extends ModelResource
 {
     protected string $model = FAQ::class;
 
-    protected string $title = 'FAQS';
+    protected string $title = 'FAQ';
 
     public function fields(): array
     {
