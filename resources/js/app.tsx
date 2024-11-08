@@ -4,9 +4,15 @@ import ReactDOM from "react-dom/client";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
 import Router from "./router";
-import { fetchPriceData } from "./store/thunks";
+
+import { fetchPrice } from "./store/Reducer";
+
 import { store } from "./store";
 import { RootState } from "./store";
+
+import { AppDispatch } from "./store";
+
+import { ERequestStatus } from "./types/ERequestStatus";
 
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,12 +28,16 @@ if (rootElement) {
 }
 
 const App = () => {
-    const dispatch = useDispatch();
-    const loaded = useSelector((state: RootState) => state.toolkitSlice.loaded);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const loaded = useSelector(
+        (state: RootState) =>
+            state.toolkitSlice.status === ERequestStatus.SUCCEEDED,
+    );
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        dispatch(fetchPriceData() as any);
+        const data = fetchPrice();
+        dispatch(data);
     }, []);
 
     return (

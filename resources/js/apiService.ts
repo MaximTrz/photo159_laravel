@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class ApiService {
-    baseUrl = "https://it-kids-kungur.ru";
+    baseUrl = "http://127.0.0.1:8000";
 
     async savePhoto(photoData, order_id, lastPhoto) {
         try {

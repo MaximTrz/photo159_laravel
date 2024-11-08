@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import StateType from "../types/StateType";
 import PriceType from "../types/PriceType";
@@ -6,6 +6,11 @@ import MaterialType from "../types/MaterialType";
 import SizeType from "../types/SizeType";
 import OptionsType from "../types/OptionsType";
 import PhotoType from "../types/PhotoType";
+import { ServerPriceData } from "../types/ServerPriceData";
+import { ERequestStatus } from "../types/ERequestStatus";
+
+import ApiService from "../apiService";
+const apiService = new ApiService();
 
 const initialState: StateType = {
     prices: [],
@@ -20,9 +25,9 @@ const initialState: StateType = {
         amount: 1,
         margin_id: 1,
     },
-    loaded: false,
     preloading: false,
     uploading: false,
+    status: ERequestStatus.IDLE,
 };
 
 const toolkitSlice = createSlice({
@@ -40,9 +45,6 @@ const toolkitSlice = createSlice({
         },
         setMargins: (state, { payload }: { payload: OptionsType[] }) => {
             state.margins = payload;
-        },
-        setLoaded: (state, { payload }: { payload: boolean }) => {
-            state.loaded = payload;
         },
         setPreloading: (state, { payload }: { payload: boolean }) => {
             state.preloading = payload;
@@ -181,6 +183,37 @@ const toolkitSlice = createSlice({
             state.photos = [];
         },
     },
+
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchPrice.pending, (state) => {
+                state.status = ERequestStatus.LOADING;
+            })
+            .addCase(fetchPrice.fulfilled, (state, { payload }) => {
+                state.status = ERequestStatus.SUCCEEDED;
+                state.prices = payload.prices;
+                state.materials = payload.materials;
+                state.sizes = payload.sizes;
+                state.margins = payload.margins;
+            })
+            .addCase(fetchPrice.rejected, (state, { payload }) => {
+                console.log(state, payload);
+            });
+    },
+});
+
+export const fetchPrice = createAsyncThunk<
+    ServerPriceData,
+    void,
+    { rejectValue: string }
+>("prices/fetchPrice", async (_, thunkAPI) => {
+    try {
+        const serverPriceData: ServerPriceData =
+            await apiService.getPricesFormServer();
+        return serverPriceData;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+    }
 });
 
 export default toolkitSlice.reducer;
@@ -192,7 +225,6 @@ export const {
     addPhotos,
     setMargins,
     setAmount,
-    setLoaded,
     setPreloading,
     setPhotoUploaded,
     setUploading,

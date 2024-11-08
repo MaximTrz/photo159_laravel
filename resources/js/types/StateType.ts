@@ -4,6 +4,8 @@ import SizeType from "./SizeType";
 import MaterialType from "./MaterialType";
 import OptionslType from "./OptionsType";
 
+import { ERequestStatus } from "./ERequestStatus";
+
 export default interface StateType {
     prices: PriceType[];
     materials: MaterialType[];
@@ -17,7 +19,7 @@ export default interface StateType {
         amount: number;
         margin_id: number;
     };
-    loaded: boolean;
     preloading: boolean;
     uploading: boolean;
+    status: ERequestStatus;
 }
