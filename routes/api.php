@@ -22,4 +22,6 @@ use App\Http\Controllers\PhotoController;
 
 Route::get('prices', [\App\Http\Controllers\Prices::class, 'index']);
 
+Route::get('faq', [\App\Http\Controllers\FaqController::class, 'index'] );
+
 Route::post('photo', [PhotoController::class, 'store']);
