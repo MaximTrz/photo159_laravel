@@ -28,7 +28,7 @@ class MarginResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                Text::make("Наименование", "name")
+                Text::make("Наименование", "name"),
             ]),
         ];
     }

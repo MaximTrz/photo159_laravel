@@ -14,8 +14,8 @@ import { AppDispatch } from "./store";
 
 import { ERequestStatus } from "./types/ERequestStatus";
 
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
+import Spinner from "./components/spinner";
+
 import UploadDialog from "./components/upload-dialog";
 
 import "normalize.css";
@@ -43,16 +43,7 @@ const App = () => {
     return (
         <>
             {!loaded ? (
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "100vh",
-                    }}
-                >
-                    <CircularProgress />
-                </Box>
+                <Spinner />
             ) : (
                 <>
                     <UploadDialog />

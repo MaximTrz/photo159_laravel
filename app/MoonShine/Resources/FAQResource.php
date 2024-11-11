@@ -7,11 +7,17 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\FAQ;
 
-use MoonShine\Fields\Text;
+
+
 use MoonShine\Fields\Textarea;
+use MoonShine\Fields\Markdown;
+
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
+
+
+
 
 /**
  * @extends ModelResource<FAQ>
@@ -28,7 +34,7 @@ class FAQResource extends ModelResource
             Block::make([
                 ID::make()->sortable(),
                 Textarea::make("Вопрос", "question"),
-                Textarea::make("Ответ", "answer")
+                Markdown::make("Ответ", "answer"),
             ]),
         ];
     }

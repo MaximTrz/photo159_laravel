@@ -15,7 +15,6 @@ export default class ApiService {
                 res.blob(),
             );
 
-            // Create a File object from the blob
             const imageFile = new File([imageBlob], "1.jpg");
 
             formData.append("photo", imageFile);
@@ -51,21 +50,22 @@ export default class ApiService {
         }
     }
 
-    async getPricesFormServer() {
+    async get(url) {
         try {
-            const response = await axios.get(`${this.baseUrl}/api/prices`);
+            const response = await axios.get(`${this.baseUrl}${url}`);
             return response.data;
         } catch (error) {
             throw new Error("Failed to fetch price data");
         }
     }
 
+    async getPricesFormServer() {
+        const response = await this.get("/api/prices");
+        return response;
+    }
+
     async getFAQFromServer() {
-        try {
-            const response = await axios.get(`${this.baseUrl}/api/faq`);
-            return response.data;
-        } catch (error) {
-            throw new Error("Failed to fetch price data");
-        }
+        const response = await this.get("/api/faq");
+        return response;
     }
 }

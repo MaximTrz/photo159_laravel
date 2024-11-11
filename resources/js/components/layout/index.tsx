@@ -5,6 +5,7 @@ import TabsList from "../tabs-list";
 import Header from "../header";
 
 import Prices from "../../pages/prices";
+import FAQ from "../../pages/faq/faq";
 import Photos from "../photos";
 
 import "./style.scss";
@@ -32,6 +33,7 @@ const Layout: React.FC = () => {
                 <div className="layout__content">
                     <Routes>
                         <Route path="/" element={<Prices />} />
+                        <Route path="/faq" element={<FAQ />} />
                     </Routes>
                 </div>
             </main>

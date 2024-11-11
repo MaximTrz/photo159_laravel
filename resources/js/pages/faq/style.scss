@@ -1,0 +1,19 @@
+.faq{
+    padding: 55px 30px;
+    &__list{
+        list-style: disc;
+    }
+    &__item{
+        margin-bottom: 30px;
+    }
+    &__question{
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    &__answer{        
+       font-family: "Myriad Pro Regular";
+       line-height: 2;
+    }
+}
+
