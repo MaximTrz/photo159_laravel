@@ -68,4 +68,9 @@ export default class ApiService {
         const response = await this.get("/api/faq");
         return response;
     }
+
+    async getServicesFromServer() {
+        const response = await this.get("/api/services");
+        return response;
+    }
 }

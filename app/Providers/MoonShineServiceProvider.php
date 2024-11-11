@@ -10,6 +10,7 @@ use App\MoonShine\Resources\MaterialResource;
 use App\MoonShine\Resources\MaterialTypeResource;
 use App\MoonShine\Resources\PriceResource;
 use App\MoonShine\Resources\PriceTypeResource;
+use App\MoonShine\Resources\ServiceResource;
 use App\MoonShine\Resources\SizeResource;
 use App\MoonShine\Resources\SizeTypeResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -63,6 +64,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make('Поля', new MarginResource()),
 
             MenuItem::make('FAQ', new FAQResource()),
+
+            MenuItem::make("Услуги", new ServiceResource() )
 
 
 
