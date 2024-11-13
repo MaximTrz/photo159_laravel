@@ -6,7 +6,7 @@
 
     @vite('resources/js/app.tsx')
 
-    <title>Печать фото онлайн</title>
+    <title>ПЕЧАТЬ ФОТО ОНЛАЙН</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,18 @@
 <body>
 
 <div id="root"></div>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+
+<!-- VK Widget -->
+<div id="vk_community_messages"></div>
+<script type="text/javascript">
+    VK.Widgets.CommunityMessages("vk_community_messages", 20064621, {expandTimeout: "30000",tooltipButtonText: "Есть вопрос?"});
+</script>
+
+<script type="text/javascript">
+    VK.Widgets.Group("vk_groups", {mode: 3, no_cover: 1, width: 230}, 20064621);
+</script>
 
 </body>
 </html>

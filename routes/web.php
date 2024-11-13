@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::view('/', 'main');
+
+$routes = ['services', 'faq', 'contacts'];
+
+foreach ($routes as $route) {
+    Route::view("/$route", 'main');
+}

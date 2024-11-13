@@ -73,4 +73,9 @@ export default class ApiService {
         const response = await this.get("/api/services");
         return response;
     }
+
+    async getContactsFormServer() {
+        const response = await this.get("/api/contacts");
+        return response;
+    }
 }

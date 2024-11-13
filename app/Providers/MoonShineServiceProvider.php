@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\ContactResource;
 use App\MoonShine\Resources\FAQResource;
 use App\MoonShine\Resources\MarginResource;
 use App\MoonShine\Resources\MaterialResource;
@@ -65,9 +66,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 
             MenuItem::make('FAQ', new FAQResource()),
 
-            MenuItem::make("Услуги", new ServiceResource() )
+            MenuItem::make("Услуги", new ServiceResource() ),
 
-
+            MenuItem::make("Контакты", new ContactResource() )
 
         ];
     }

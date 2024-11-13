@@ -26,6 +26,6 @@ Route::get('faq', [\App\Http\Controllers\FaqController::class, 'index'] );
 
 Route::get('services', [\App\Http\Controllers\ServiceController::class, 'index']);
 
+Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index']);
+
 Route::post('photo', [PhotoController::class, 'store']);
-
-
