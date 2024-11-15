@@ -1,22 +1,27 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+
+import { AppDispatch } from "../../store";
+
+import { fetchFAQ } from "../../store/pagesSlice";
+
 import IFAQ from "../../types/FAQ";
-import ApiService from "../../apiService";
+
 import Spinner from "../../components/spinner";
 
 import "./style.scss";
 
-const apiService = new ApiService();
-
 const FAQ: React.FC = () => {
-    const [faqItems, setFaqItems] = useState<IFAQ[]>([]);
+    const dispatch = useDispatch<AppDispatch>();
+    const faqItems: IFAQ[] = useSelector(
+        (state: RootState) => state.contactSlies.faq,
+    );
     useEffect(() => {
-        const fetchFaq = async () => {
-            const items = await apiService.getFAQFromServer();
-            setFaqItems(items);
-        };
-        fetchFaq();
-    }, []);
+        dispatch(fetchFAQ());
+    }, [faqItems]);
 
     return (
         <div className="faq">

@@ -1,0 +1,40 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+.contacts{
+    display: flex;
+    gap: 10px;
+    background-color: #e0e0e0;
+
+    @include tablet {
+        flex-wrap: wrap;
+    }
+    
+    &__item{
+        background-color: #fff;
+        flex-grow: 1;
+        padding: 50px 10px;
+    }
+    &__title{
+        font-size: 25px;
+        margin-bottom: 10px;
+        font-family: "Myriad Pro Bold";
+    }
+    &__text{
+        margin-bottom: 10px;
+        font-family: "Myriad Pro Regular";
+        line-height: 1.4;
+    }
+    a{
+        color: #4a76a8;
+        text-decoration:underline;
+    }
+    &__soc{
+        background-color: #fff;
+        @include tablet {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+              
+    }
+}

@@ -1,14 +1,17 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { AppDispatch } from "../../store";
 
 import Spinner from "../../components/spinner";
 
 import "./style.scss";
-import ApiService from "../../apiService";
 
-const apiService = new ApiService();
+import { fetchServices } from "../../store/pagesSlice";
 
-interface IServices {
+export interface IServices {
     id: number;
     title: string;
     description: string;
@@ -16,14 +19,15 @@ interface IServices {
 }
 
 const ServicesPage: React.FC = () => {
-    const [serviceItems, setServiceItems] = useState<IServices[]>([]);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const serviceItems: IServices[] = useSelector(
+        (state: RootState) => state.contactSlies.services,
+    );
     useEffect(() => {
-        const fetchServices = async () => {
-            const items: IServices[] = await apiService.getServicesFromServer();
-            setServiceItems(items);
-        };
-        fetchServices();
-    });
+        dispatch(fetchServices());
+    }, [serviceItems]);
+
     return (
         <div className="services">
             {serviceItems.length > 0 ? (

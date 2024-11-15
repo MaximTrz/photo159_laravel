@@ -8,6 +8,7 @@ import Prices from "../../pages/prices";
 import FAQ from "../../pages/faq/faq";
 import Photos from "../photos";
 import ServicesPage from "../../pages/services-page";
+import ContactsPage from "../../pages/contacts";
 
 import "./style.scss";
 import usePhotos from "../../hooks/usePhotos";
@@ -36,6 +37,7 @@ const Layout: React.FC = () => {
                         <Route path="/" element={<Prices />} />
                         <Route path="/faq" element={<FAQ />} />
                         <Route path="/services" element={<ServicesPage />} />
+                        <Route path="/contacts" element={<ContactsPage />} />
                     </Routes>
                 </div>
             </main>

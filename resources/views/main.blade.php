@@ -34,9 +34,5 @@
     VK.Widgets.CommunityMessages("vk_community_messages", 20064621, {expandTimeout: "30000",tooltipButtonText: "Есть вопрос?"});
 </script>
 
-<script type="text/javascript">
-    VK.Widgets.Group("vk_groups", {mode: 3, no_cover: 1, width: 230}, 20064621);
-</script>
-
 </body>
 </html>

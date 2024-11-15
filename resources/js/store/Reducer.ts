@@ -196,9 +196,7 @@ const toolkitSlice = createSlice({
                 state.sizes = payload.sizes;
                 state.margins = payload.margins;
             })
-            .addCase(fetchPrice.rejected, (state, { payload }) => {
-                console.log(state, payload);
-            });
+            .addCase(fetchPrice.rejected, () => {});
     },
 });
 

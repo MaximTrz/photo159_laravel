@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import toolkitSlice from "./Reducer";
+import contactSlies from "./pagesSlice";
 
 const rootReducer = combineReducers({
     toolkitSlice,
+    contactSlies,
 });
 
 export const store = configureStore({
