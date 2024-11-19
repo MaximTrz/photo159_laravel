@@ -20,7 +20,7 @@ use App\Http\Controllers\PhotoController;
 //    return $request->user();
 //});
 
-Route::get('prices', [\App\Http\Controllers\Prices::class, 'index']);
+Route:: get('prices', [\App\Http\Controllers\Prices::class, 'index']);
 
 Route::get('faq', [\App\Http\Controllers\FaqController::class, 'index'] );
 

@@ -1,0 +1,65 @@
+@import "../../style/_constants.scss";
+@import "../../style/_mixins.scss";
+
+.form-order{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    &__label{
+        display: flex;
+        align-items: center;
+    }
+    &__field-title{
+        width: 20%;
+        font-size: 20px;
+    }
+    &__input{
+        flex-grow: 1; 
+        font-size: 20px;
+        &.--error{
+            border: 1px dotted red;
+        }      
+    }
+
+    &__span-value{
+        color: red;
+        font-size: 30px;
+        margin-right: 5px;
+    }
+
+    &__span-unit{
+        color: #000;
+    }
+    
+    &__personal-date{
+        display: flex;
+        align-items: center;
+    }
+    &__personal-date-text{
+        font-size: 12px;
+    }
+    &__button-wrapper{
+        max-width: 200px;
+    }
+    &__button{        
+        font-family: $second-font-family;
+        color: #fff;
+        background-color: $base-blue;
+        width: 100%;
+        font-size: 25px;
+        padding: 5px 27px;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($base-blue, 15%);
+        }
+        &:disabled {
+            color: #fff;
+            background-color: #8a8a8a;
+            cursor: not-allowed;
+        }
+
+        @include tablet {
+            padding: 8px 27px 5px 27px;
+        }
+    }
+}
