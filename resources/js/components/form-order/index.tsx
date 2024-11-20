@@ -56,6 +56,10 @@ const FormOrder: React.FC = () => {
             ...prevData,
             [name]: value,
         }));
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: false,
+        }));
     };
 
     const handleSelectChange = (
@@ -80,7 +84,7 @@ const FormOrder: React.FC = () => {
     const handleSubmit = () => {
         console.log(validateFields());
         if (validateFields() && checked) {
-            sendOrder();
+            sendOrder(orderData);
         }
     };
 
@@ -153,7 +157,7 @@ const FormOrder: React.FC = () => {
                     Способ доставки:
                 </span>
                 <select
-                    className="form-order__field-title"
+                    className="form-order__input"
                     name="delivery_method"
                     onChange={handleSelectChange}
                     value={orderData.delivery_method}

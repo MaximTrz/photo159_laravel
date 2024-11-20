@@ -1,9 +1,10 @@
 import axios from "axios";
+import { IOrderData } from "./components/form-order";
 
 export default class ApiService {
     baseUrl = "http://127.0.0.1:8000";
 
-    async savePhoto(photoData, order_id, lastPhoto) {
+    async savePhoto(photoData, order_id, lastPhoto, orderData: IOrderData) {
         try {
             const formData = new FormData();
             formData.append("size_id", photoData.size_id);
@@ -27,13 +28,15 @@ export default class ApiService {
                 formData.append("order_id", order_id);
             }
 
-            formData.append("name", "Максим");
-            formData.append("surname", "Трапезников");
-            formData.append("email", "maxim.trz@gmail.com");
-            formData.append("phone", "9068715548");
-            formData.append("delivery_type", "1");
-            formData.append("pay_type", "1");
-            formData.append("delivery_address", "Бачурина 1");
+            formData.append("name", orderData.first_name);
+            formData.append("surname", orderData.surname);
+            formData.append("email", orderData.email);
+            formData.append("phone", orderData.tel);
+            formData.append(
+                "delivery_type",
+                orderData.delivery_method.toString(),
+            );
+            formData.append("pay_type", orderData.pay_method.toString());
 
             const response = await axios.post(
                 `${this.baseUrl}/api/photo`,

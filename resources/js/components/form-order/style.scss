@@ -16,6 +16,11 @@
     &__input{
         flex-grow: 1; 
         font-size: 20px;
+        border: none;
+        &:focus {
+            border: none;
+            outline: none;
+        }
         &.--error{
             border: 1px dotted red;
         }      

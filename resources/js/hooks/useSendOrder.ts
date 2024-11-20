@@ -3,13 +3,15 @@ import ApiService from "../apiService";
 import { useDispatch } from "react-redux";
 import { setPhotoUploaded, setUploading } from "../store/Reducer";
 
+import { IOrderData } from "../components/form-order";
+
 const useSendOrder = () => {
     const { photosList, uploading } = usePhotos();
     const apiService = new ApiService();
 
     const dispatch = useDispatch();
 
-    const sendOrder = async () => {
+    const sendOrder = async (orderData: IOrderData) => {
         let order_id = 0;
         let lastRequestTime = 0;
         const MIN_REQUEST_INTERVAL = 1000; // В миллисекундах (здесь 1000 мс = 1 секунда)
@@ -35,6 +37,7 @@ const useSendOrder = () => {
                         photoData,
                         order_id,
                         lastPhoto,
+                        orderData,
                     );
 
                     dispatch(setPhotoUploaded(photoData));

@@ -1,13 +1,15 @@
 import * as React from "react";
-import useSendOrder from "../../hooks/useSendOrder";
 import "./style.scss";
 
-const CheckoutButton: React.FC = () => {
-    const { sendOrder } = useSendOrder();
+interface CheckoutButtonProps {
+    onClick: React.MouseEventHandler<HTMLButtonElement>; // Определение типа для onClick
+}
 
+const CheckoutButton: React.FC<CheckoutButtonProps> = ({ onClick }) => {
+    // Деструктуризуем props
     return (
-        <button onClick={sendOrder} className="checkout-button">
-            Оформить заказ
+        <button onClick={onClick} className="checkout-button">
+            К оформлению
         </button>
     );
 };

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import usePhotos from "../../hooks/usePhotos";
 
 import PhotoItem from "../photo-item";
@@ -14,10 +14,36 @@ import "./style.scss";
 const Photos: React.FC = () => {
     const { photosList, totalPhotosCount, totalSum } = usePhotos();
 
+    const photosRef = useRef<HTMLDivElement | null>(null);
+    const handleCheckoutClick = () => {
+        if (photosRef.current) {
+            const { bottom } = photosRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (bottom > windowHeight) {
+                const scrollY =
+                    window.scrollY +
+                    photosRef.current.offsetHeight +
+                    photosRef.current.offsetHeight * 0.1;
+                window.scrollTo({
+                    top: scrollY,
+                    behavior: "smooth",
+                });
+            } else {
+                const scrollY =
+                    window.scrollY + photosRef.current.offsetHeight * 0.5;
+                window.scrollTo({
+                    top: scrollY,
+                    behavior: "smooth",
+                });
+            }
+        }
+    };
+
     const memoizedPhotosList = useMemo(() => photosList, [photosList]);
 
     return (
-        <div className="photos">
+        <div className="photos" ref={photosRef}>
             <div className="photos__header">
                 <div className="photos__header-text">
                     <div className="photos__header-count">
@@ -32,7 +58,7 @@ const Photos: React.FC = () => {
                         <DeleteAll />
                     </div>
                     <div className="photos__header-checkout-button">
-                        <CheckoutButton />
+                        <CheckoutButton onClick={handleCheckoutClick} />
                     </div>
                 </div>
             </div>
@@ -59,7 +85,7 @@ const Photos: React.FC = () => {
                         <DeleteAll />
                     </div>
                     <div className="photos__footer-checkout-button">
-                        <CheckoutButton />
+                        <CheckoutButton onClick={handleCheckoutClick} />
                     </div>
                 </div>
             </div>
