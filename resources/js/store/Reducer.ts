@@ -19,6 +19,7 @@ const initialState: StateType = {
     margins: [],
     lastID: 0,
     photos: [],
+    orderID: 0,
     aplyAll: {
         size_id: 4,
         material_id: 1,
@@ -59,6 +60,10 @@ const toolkitSlice = createSlice({
         },
         setUploading: (state, { payload }: { payload: boolean }) => {
             state.uploading = payload;
+        },
+
+        setOrderID: (state, { payload }: { payload: number }) => {
+            state.orderID = payload;
         },
 
         addPhotos: (state, { payload }: { payload: string[] }) => {
@@ -225,6 +230,7 @@ export const {
     setAmount,
     setPreloading,
     setPhotoUploaded,
+    setOrderID,
     setUploading,
     setPhotoMaterial,
     setPhotoSize,

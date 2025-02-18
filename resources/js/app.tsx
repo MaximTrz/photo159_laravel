@@ -23,6 +23,7 @@ import "./style/app.scss";
 
 const rootElement = document.getElementById("root");
 let root;
+
 if (rootElement) {
     root = ReactDOM.createRoot(rootElement);
 }

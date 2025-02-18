@@ -14,7 +14,8 @@ import usePhotos from "../../hooks/usePhotos";
 import usePhotoProperties from "../../hooks/usePhotoProperties";
 
 const UploadDialog = () => {
-    const { photosList, photoUploaded, uploading } = usePhotos();
+    const { photosList, photoUploaded, uploading, orderID, setOrder } =
+        usePhotos();
     const { setUploadingStatus, deleteAllPhoto } = usePhotoProperties();
 
     const uploadingPercent =
@@ -25,6 +26,7 @@ const UploadDialog = () => {
     const close = useCallback(() => {
         setUploadingStatus(false);
         deleteAllPhoto();
+        setOrder(0);
     }, []);
 
     const content =
@@ -55,7 +57,7 @@ const UploadDialog = () => {
                 </Box>
             </>
         ) : (
-            <div>Ваш заказ оформлен</div>
+            <div>Номер вашего заказа {orderID}. Ваш заказ оформлен. </div>
         );
 
     return (

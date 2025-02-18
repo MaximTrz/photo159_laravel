@@ -6,7 +6,7 @@ import { setPhotoUploaded, setUploading } from "../store/Reducer";
 import { IOrderData } from "../components/form-order";
 
 const useSendOrder = () => {
-    const { photosList, uploading } = usePhotos();
+    const { photosList, uploading, setOrder } = usePhotos();
     const apiService = new ApiService();
 
     const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const useSendOrder = () => {
 
                     if (order_id === 0) {
                         order_id = response.order_id;
+                        setOrder(order_id);
                     }
                     console.log(order_id);
 

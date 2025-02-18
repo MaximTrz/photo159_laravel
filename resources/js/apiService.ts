@@ -2,7 +2,7 @@ import axios from "axios";
 import { IOrderData } from "./components/form-order";
 
 export default class ApiService {
-    baseUrl = "http://127.0.0.1:8000";
+    baseUrl = "http://h90911xf.beget.tech";
 
     async savePhoto(photoData, order_id, lastPhoto, orderData: IOrderData) {
         try {

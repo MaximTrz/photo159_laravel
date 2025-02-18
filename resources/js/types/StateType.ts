@@ -13,6 +13,7 @@ export default interface StateType {
     photos: PhotoType[];
     margins: OptionslType[];
     lastID: number;
+    orderID: number;
     aplyAll: {
         size_id: number;
         material_id: number;

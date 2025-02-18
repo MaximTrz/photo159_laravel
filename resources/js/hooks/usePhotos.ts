@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ToolKitStateType from "../types/ToolKitStateType";
 import { useMemo } from "react";
 
 import usePhotoProperties from "./usePhotoProperties";
 
+import { setOrderID } from "../store/Reducer";
+
 const usePhotos = () => {
+    const dispatch = useDispatch();
+
     const { findPriceByIDs } = usePhotoProperties();
 
     const photosList = useSelector(
@@ -17,6 +21,10 @@ const usePhotos = () => {
 
     const uploading = useSelector(
         (state: ToolKitStateType) => state.toolkitSlice.uploading,
+    );
+
+    const orderID = useSelector(
+        (state: ToolKitStateType) => state.toolkitSlice.orderID,
     );
 
     const photoUploaded = useMemo(() => {
@@ -38,6 +46,10 @@ const usePhotos = () => {
         }, 0);
     }, [photosList]);
 
+    const setOrder = (orderID: number) => {
+        dispatch(setOrderID(orderID));
+    };
+
     return {
         photosList,
         preloading,
@@ -45,6 +57,8 @@ const usePhotos = () => {
         photoUploaded,
         totalPhotosCount,
         totalSum,
+        orderID,
+        setOrder,
     };
 };
 

@@ -65,7 +65,9 @@ const Layout: React.FC = () => {
                     </Routes>
                 </div>
             </main>
-            <footer className="layout__footer">&#9400; 2024</footer>
+            <footer className="layout__footer">
+                &#9400; {new Date().getFullYear()}
+            </footer>
         </div>
     );
 };

@@ -18,7 +18,7 @@ class ServiceController extends Controller
             $item->description = $parsedown->text($item->description);
 
             if ($item->image) {
-                $item->image = url('storage/' . $item->image);
+                $item->image = asset('storage/' . $item->image);
             }
 
         }

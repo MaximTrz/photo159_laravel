@@ -96,13 +96,15 @@ const FormOrder: React.FC = () => {
                 </span>
                 <span className="form-order__span-value">
                     {totalPhotosCount}
+                    <span className="form-order__span-unit">шт.</span>
                 </span>
-                <span className="form-order__span-unit">шт.</span>
             </label>
             <label className="form-order__label">
                 <span className="form-order__field-title">Итого:</span>
-                <span className="form-order__span-value">{totalSum}</span>
-                <span className="form-order__span-unit">₽</span>
+                <span className="form-order__span-value">
+                    {totalSum}
+                    <span className="form-order__span-unit">₽</span>
+                </span>
             </label>
             <label className="form-order__label">
                 <span className="form-order__field-title">Фамилия:</span>
